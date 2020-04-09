@@ -58,4 +58,11 @@ export default Vue.extend({
 </script>
 
 <style scoped>
+.container {
+  margin: 0 auto;
+  min-height: 90vh;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
 </style>

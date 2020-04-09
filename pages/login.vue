@@ -59,6 +59,8 @@ export default Vue.extend({
   display: flex;
   min-height: 90vh;
   justify-content: center;
+  align-items: center;
+  text-align: center;
 }
 
 .logo {

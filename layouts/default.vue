@@ -5,11 +5,15 @@
 </template>
 
 <style>
-.container {
-  margin: 0 auto;
-  min-height: 100vh;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
+
+@font-face {
+  font-family: 'SawarabiGothic-Regular';
+  src: url('../assets/SawarabiGothic-Regular.ttf');
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  font-family: 'SawarabiGothic-Regular'
 }
 </style>
