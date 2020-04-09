@@ -1,9 +1,9 @@
 <template>
   <div class="container">
     <div v-if="!isLoading">
-      <img src="@/assets/logo.png" />
+      <img class="logo" src="@/assets/logo.png" />
       <div>
-        <button @click="login">ログイン</button>
+        <styled-button class="login-button" label="ログイン" @click.native="login" />
       </div>
     </div>
     <div v-else>
@@ -15,7 +15,8 @@
 <script lang="ts">
 import Vue from "vue"
 import firebase from "firebase"
-import loading from '@/components/loading.vue'
+import loading from '@/components/atoms/loading.vue'
+import styledButton from '@/components/atoms/styled-button.vue'
 
 interface LoginData {
   isLoading: boolean
@@ -28,7 +29,8 @@ export default Vue.extend({
     }
   },
   components: {
-    loading
+    loading,
+    styledButton
   },
   mounted() {
     if (window.location.hash === '#redirecting') {
@@ -53,4 +55,16 @@ export default Vue.extend({
 </script>
 
 <style scoped>
+.container {
+  display: flex;
+  min-height: 90vh;
+  justify-content: center;
+}
+
+.logo {
+  height: 330px;
+  width: 330px;
+  margin-left: 80px;
+  margin-bottom: 48px;
+}
 </style>

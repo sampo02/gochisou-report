@@ -18,7 +18,7 @@ import Vue from "vue"
 import firebase from "firebase"
 import { reportStore } from "@/store"
 import { Report } from "@/store/types"
-import loading from '@/components/loading.vue'
+import loading from '@/components/atoms/loading.vue'
 
 export type ReportData = {
   url: string
