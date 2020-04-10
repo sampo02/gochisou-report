@@ -19,7 +19,7 @@ export default class ReportModule extends VuexModule {
   }
 
   @Action
-  fetch():void {
+  fetch(): void {
     this.updateing(true)
     db.collection('reports')
       .get()
@@ -30,13 +30,16 @@ export default class ReportModule extends VuexModule {
       })
   }
 
-  @Action
-  create(url: string):void {
+  @Action({ rawError: true })
+  create(payload: any): void {
     (firestoreAction(() => {
       {
         return db.collection('reports')
           .add({
-            url: url
+            imageUrl: payload.imageUrl,
+            title: payload.title,
+            url: payload.url,
+            tags: payload.tags
           })
       }
     }) as Function)(this.context)

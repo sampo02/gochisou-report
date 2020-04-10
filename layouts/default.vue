@@ -14,6 +14,7 @@
 }
 
 body {
-  font-family: 'SawarabiGothic-Regular'
+  font-family: 'SawarabiGothic-Regular';
+  margin: 0;
 }
 </style>
