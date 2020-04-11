@@ -1,5 +1,6 @@
 import { VuexModule, Module, Mutation, Action } from 'vuex-module-decorators'
 import { firestoreAction } from 'vuexfire'
+import firebase from "firebase"
 import { db } from '@/plugins/db'
 import { Report } from '@/store/types'
 
@@ -10,6 +11,7 @@ export default class ReportModule extends VuexModule {
 
   @Mutation
   set(reports: any) {
+    this.reports = []
     this.reports = reports
   }
 
@@ -31,18 +33,21 @@ export default class ReportModule extends VuexModule {
   }
 
   @Action({ rawError: true })
-  create(payload: any): void {
-    (firestoreAction(() => {
+  async create(payload: any): Promise<void> {
+    await (firestoreAction(() => {
       {
         return db.collection('reports')
           .add({
-            imageUrl: payload.imageUrl,
+            imageFileName: payload.imageFileName,
             title: payload.title,
             url: payload.url,
             tags: payload.tags
           })
       }
     }) as Function)(this.context)
+    const storageRef = firebase.storage().ref()
+    const imageRef = storageRef.child(`images/${payload.imageFileName}`)
+    await imageRef.put(payload.imageFile)
     this.fetch()
   }
 }

@@ -1,15 +1,18 @@
 
 <template>
   <div>
-    <modal name="add-report" :width="340" :height="600">
+    <modal name="add-report" :width="340" :height="560">
       <div class="header">
         <img class="cancel-icon" src="@/assets/icon_cancel.png" @click="close" />
       </div>
       <div class="body">
         <form @submit.prevent="onSubmit">
-          <div class="input-text">
-            <label class="label" for="image">ごちそう画像リンク</label>
-            <input class="input" id="image" v-model="imageUrl" />
+          <img v-if="previewUrl" class="preview" :src="previewUrl" />
+          <div v-else class="preview-input-container">
+            <label for="preview">
+              <img class="camera-icon" src="@/assets/icon_camera.png"/>
+            </label>
+            <input type="file" accept="image/*" class="preview-input" id="preview" @change="onPreviewImageChange" />
           </div>
           <div class="input-text">
             <label class="label" for="title">ごちそうタイトル</label>
@@ -38,12 +41,16 @@
 
 <script lang="ts">
 import Vue from "vue"
+import firebase from "firebase"
 import { Report } from "@/store/types"
 import { reportStore } from "@/store"
 import styledButton from '@/components/atoms/styled-button.vue'
+import { v4 as uuidv4 } from "uuid"
 
 export type ReportData = {
-  imageUrl: string
+  previewUrl: string
+  imageFile: Blob | null
+  imageFileName: string
   title: string
   url: string
   createdAt: string
@@ -53,7 +60,9 @@ export type ReportData = {
 export default Vue.extend({
   data(): ReportData {
     return {
-      imageUrl: '',
+      previewUrl: '',
+      imageFile: null,
+      imageFileName: '',
       title: '',
       url: '',
       createdAt: '',
@@ -67,19 +76,36 @@ export default Vue.extend({
     close(): void {
       this.$emit("close")
     },
-    onSubmit(): void {
-      reportStore.create({ imageUrl: this.imageUrl, title: this.title, url: this.url, tags: this.tags })
+    onPreviewImageChange(e: any): void {
+      const file = e.target.files[0]
+      const rawExtention: string = file.type
+      this.previewUrl = URL.createObjectURL(file)
+      this.imageFile = file
+      this.imageFileName = `${uuidv4()}.${rawExtention.split('/')[1]}`
+    },
+    onSubmit(e: any): void {
+      reportStore.create({ imageFileName: this.imageFileName, imageFile: this.imageFile, title: this.title, url: this.url, tags: this.tags })
+      this.clear()
       this.$emit("close")
     },
+    clear(): void {
+      this.previewUrl = ''
+      this.imageFile = null
+      this.imageFileName = ''
+      this.title = ''
+      this.url = ''
+      this.createdAt = ''
+      this.tags = ''
+    }
   }
 })
 </script>
 
 <style>
 .v--modal-box {
-  -webkit-border-radius: 16px;
-  -moz-border-radius: 16px;
-  border-radius: 16px; 
+  -webkit-border-radius: 16px !important;
+  -moz-border-radius: 16px !important;
+  border-radius: 16px !important; 
 }
 </style>
 
@@ -91,9 +117,36 @@ export default Vue.extend({
 }
 
 .cancel-icon {
-  width: 28px;
   height: 28px;
+  width: 28px;
   margin: 12px;
+}
+
+.preview-input {
+  display: none;
+}
+
+.camera-icon {
+  height: 48px;
+  width: 48px;
+}
+
+.preview-input-container {
+  position: relative;
+  height: 180px;
+  width: 180px;
+  border-radius: 16px;
+  background: #9A8584;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+}
+
+.preview {
+  height: 180px;
+  width: 180px;
+  border-radius: 16px;
 }
 
 .body {
@@ -127,9 +180,11 @@ form {
   border-radius: 8px;
   width: 200px; 
   height: 24px;
-  padding: 4px;
+  padding: 4px 12px;
   background-color: #E6E0D9;
   outline-width: 0;
+  border-style: solid;
+  border: none;
 }
 
 input, label {

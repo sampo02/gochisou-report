@@ -2,7 +2,7 @@
 <template>
   <div>
     <a :href="url" target="_blank">
-      <img class="image" :src="imageUrl" />
+      <img v-if="imageUrl" class="image" :src="imageUrl" />
     </a>
     <p class="title">{{ title }}</p>
     <p class="date">2020/4/10</p>
@@ -12,21 +12,40 @@
 
 <script lang="ts">
 import Vue from "vue"
+import firebase from "firebase"
+
+export type ReportData = {
+  imageUrl: string
+}
+
 export default Vue.extend({
+  data(): ReportData {
+    return {
+      imageUrl: ''
+    }
+  },
   props: {
-    imageUrl: String,
+    imageFileName: String,
     title: String,
     url: String,
     tags: String
-  }
+  },
+  created() {
+    const storage = firebase.storage();
+    const gsReference = storage.refFromURL(`gs://${process.env.storageBucket}/images/${this.imageFileName}`);
+    gsReference.getDownloadURL().then(url => {
+      this.imageUrl = url
+    })
+  },
 })
 </script>
 
 <style scoped>
 .image {
-  width: 168px;
-  height: 168px;
+  width: 100%;
+  height: 180px;
   border-radius: 16px;
+  object-fit: cover
 }
 
 p {

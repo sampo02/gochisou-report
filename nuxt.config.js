@@ -22,6 +22,7 @@ export default {
     apiKey: process.env.API_KEY,
     authDomain: process.env.AUTH_DOMAIN,
     projectId: process.env.PROJECT_ID,
+    storageBucket: process.env.STORAGE_BUCKET,
   },
   /*
   ** Customize the progress-bar color

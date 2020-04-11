@@ -8,12 +8,12 @@
       <div v-for="(report, index) in reports" :key="index" class="row">
         <div v-if="index % 2 === 0" class="column">
           <div class="report-left">
-            <report :imageUrl="report.imageUrl" :title="report.title" :url="report.url" :tags="report.tags" />
+            <report :imageFileName="report.imageFileName" :title="report.title" :url="report.url" :tags="report.tags" />
           </div>
         </div>
         <div v-else class="column">
           <div class="report-right">
-            <report :imageUrl="report.imageUrl" :title="report.title" :url="report.url" :tags="report.tags" />
+            <report :imageFileName="report.imageFileName" :title="report.title" :url="report.url" :tags="report.tags" />
           </div>
         </div>
       </div>
@@ -89,10 +89,8 @@ export default Vue.extend({
 }
 
 .container {
-  margin: 64px auto;
-  width: 100%;
+  margin: 68px auto;
   max-width: 400px;
-  justify-content: center;
   align-items: center;
   text-align: center;
 }
@@ -101,10 +99,6 @@ export default Vue.extend({
   float: left;
   width: 50%;
   margin-top: 12px;
-}
-
-.row:after {
-  clear: both;
 }
 
 .report-left {
