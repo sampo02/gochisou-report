@@ -57,6 +57,9 @@ p {
   font-size: 0.9rem;
   font-weight: bold;
   color: #685F56;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .date {
