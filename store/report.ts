@@ -23,7 +23,7 @@ export default class ReportModule extends VuexModule {
   @Action
   fetch(): void {
     this.updateing(true)
-    db.collection('reports')
+    db.collection('reports').orderBy('createdAt', 'desc')
       .get()
       .then(querySnapshot => {
         const documents = querySnapshot.docs.map(doc => doc.data())
@@ -41,6 +41,7 @@ export default class ReportModule extends VuexModule {
             imageFileName: payload.imageFileName,
             title: payload.title,
             url: payload.url,
+            createdAt: firebase.firestore.Timestamp.fromDate(new Date("April 18, 2020")),
             tags: payload.tags
           })
       }

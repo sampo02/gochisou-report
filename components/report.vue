@@ -1,12 +1,15 @@
 
 <template>
   <div>
-    <a :href="url" target="_blank">
-      <img v-if="imageUrl" class="image" :src="imageUrl" />
-    </a>
-    <p class="title">{{ title }}</p>
-    <p class="date">2020/4/10</p>
-    <p class="tags">{{ tags }}</p>
+    <div class="report">
+      <a :href="url" target="_blank">
+        <img v-if="imageUrl" class="image" :src="imageUrl" />
+      </a>
+      <p class="title">{{ title }}</p>
+      <p class="date">2020/4/10</p>
+      <p class="tags">{{ tags }}</p>
+      <img @click="edit" class="icon" src="@/assets/icon_edit.png" />
+    </div>
   </div>
 </template>
 
@@ -37,10 +40,27 @@ export default Vue.extend({
       this.imageUrl = url
     })
   },
+  methods: {
+    edit(): void {
+      this.$emit("edit")
+    }
+  }
 })
 </script>
 
 <style scoped>
+.report {
+  position: relative;
+}
+.icon {
+  position: absolute;
+  height: 20px;
+  width: 20px;
+  margin: 12px;
+  top: 0;
+  right: 0;
+  cursor: pointer;
+}
 .image {
   width: 100%;
   height: 180px;

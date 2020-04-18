@@ -8,18 +8,19 @@
       <div v-for="(report, index) in reports" :key="index" class="row">
         <div v-if="index % 2 === 0" class="column">
           <div class="report-left">
-            <report :imageFileName="report.imageFileName" :title="report.title" :url="report.url" :tags="report.tags" />
+            <report v-on:edit="showEditReportModal" :imageFileName="report.imageFileName" :title="report.title" :url="report.url" :tags="report.tags" />
           </div>
         </div>
         <div v-else class="column">
           <div class="report-right">
-            <report :imageFileName="report.imageFileName" :title="report.title" :url="report.url" :tags="report.tags" />
+            <report v-on:edit="showEditReportModal" :imageFileName="report.imageFileName" :title="report.title" :url="report.url" :tags="report.tags" />
           </div>
         </div>
       </div>
     </div>
     <add-report @click.native="showAddReportModal" />
     <add-report-modal v-on:close="hideAddReportModal"/>
+    <edit-report-modal v-on:close="hideEditReportModal"/>
   </div>
 </template>
 
@@ -30,6 +31,7 @@ import { reportStore } from "@/store"
 import { Report } from "@/store/types"
 import addReport from '@/components/add-report.vue'
 import addReportModal from '@/components/add-report-modal.vue'
+import editReportModal from '@/components/edit-report-modal.vue'
 import loading from '@/components/atoms/loading.vue'
 import report from '@/components/report.vue'
 import styledButton from '@/components/atoms/styled-button.vue'
@@ -41,6 +43,7 @@ export default Vue.extend({
   components: {
     addReport,
     addReportModal,
+    editReportModal,
     loading,
     report,
     styledButton
@@ -62,6 +65,12 @@ export default Vue.extend({
     },
     hideAddReportModal(): void {
       this.$modal.hide('add-report')
+    },
+    showEditReportModal(): void {
+      this.$modal.show('edit-report')
+    },
+    hideEditReportModal(): void {
+      this.$modal.hide('edit-report')
     },
     logout(): void {
       firebase.auth().signOut().then(() => {

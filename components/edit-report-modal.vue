@@ -1,7 +1,7 @@
 
 <template>
   <div>
-    <modal name="add-report" :width="340" :height="560">
+    <modal name="edit-report" :width="340" :height="560">
       <div class="header">
         <img class="cancel-icon" src="@/assets/icon_cancel.png" @click="close" />
       </div>
@@ -147,7 +147,6 @@ export default Vue.extend({
   height: 180px;
   width: 180px;
   border-radius: 16px;
-  object-fit: cover
 }
 
 .body {
