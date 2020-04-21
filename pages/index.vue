@@ -25,10 +25,10 @@
 </template>
 
 <script lang="ts">
-import Vue from "vue"
-import firebase from "firebase"
-import { reportStore } from "@/store"
-import { Report } from "@/store/types"
+import Vue from 'vue'
+import firebase from 'firebase'
+import { reportStore } from '@/store'
+import { Report } from '@/store/types'
 import addReport from '@/components/add-report.vue'
 import addReportModal from '@/components/add-report-modal.vue'
 import editReportModal from '@/components/edit-report-modal.vue'
@@ -88,6 +88,7 @@ export default Vue.extend({
   height: 64px;
   width: 100%;
   background: #9A8584;
+  z-index: 1;
 }
 
 .header-image {
