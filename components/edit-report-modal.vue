@@ -1,19 +1,15 @@
 
 <template>
   <div>
-    <modal name="edit-report" :width="340" :height="560">
+    <modal @before-open="beforeOpen" name="edit-report" :width="340" :height="560">
       <div class="header">
         <img class="cancel-icon" src="@/assets/icon_cancel.png" @click="close" />
       </div>
       <div class="body">
         <form @submit.prevent="onSubmit">
-          <img v-if="previewUrl" class="preview" :src="previewUrl" />
-          <div v-else class="preview-input-container">
-            <label for="preview">
-              <img class="camera-icon" src="@/assets/icon_camera.png"/>
-            </label>
-            <input type="file" accept="image/*" class="preview-input" id="preview" @change="onPreviewImageChange" />
-          </div>
+          <a :href="this.url" target="_blank">
+            <img class="preview" :src="imageUrl" />
+          </a>
           <div class="input-text">
             <label class="label" for="title">ごちそうタイトル</label>
             <input class="input" id="title" v-model="title" />
@@ -24,7 +20,7 @@
           </div>
           <div class="input-text">
             <label class="label">投稿日</label>
-            <label class="report-date">2020/4/11</label>
+            <label class="report-date">{{ this.createdAt }}</label>
           </div>
           <div class="input-text">
             <label class="label" for="tags">タグ</label>
@@ -40,77 +36,86 @@
 </template>
 
 <script lang="ts">
-import Vue from "vue"
-import firebase from "firebase"
-import { Report } from "@/store/types"
-import { reportStore } from "@/store"
-import styledButton from '@/components/atoms/styled-button.vue'
-import { v4 as uuidv4 } from "uuid"
+import Vue, { PropType } from "vue";
+import firebase from "firebase";
+import moment from "moment";
+import { Report } from "@/store/types";
+import { reportStore } from "@/store";
+import styledButton from "@/components/atoms/styled-button.vue";
+import { v4 as uuidv4 } from "uuid";
 
-export type ReportData = {
-  previewUrl: string
-  imageFile: Blob | null
-  imageFileName: string
-  title: string
-  url: string
-  createdAt: string
-  tags: string
-}
+export type EditReportModalData = {
+  id: string;
+  title: string;
+  imageUrl: string;
+  url: string;
+  createdAt: string;
+  tags: string;
+};
 
 export default Vue.extend({
-  data(): ReportData {
+  data(): EditReportModalData {
     return {
-      previewUrl: '',
-      imageFile: null,
-      imageFileName: '',
-      title: '',
-      url: '',
-      createdAt: '',
-      tags: ''
-    }
+      id: "",
+      title: "",
+      imageUrl: "",
+      url: "",
+      createdAt: "",
+      tags: ""
+    };
+  },
+  props: {
+    report: Object as PropType<Report>
   },
   components: {
     styledButton
   },
   methods: {
-    close(): void {
-      this.$emit("close")
+    beforeOpen(event: any): void {
+      const report: Report = event.params.report
+      this.id = report.id
+      report.imageUrl.then((url: string) => {
+        this.imageUrl = url;
+      });
+      this.title = report.title;
+      this.url = report.url;
+      this.createdAt = moment(report.createdAt.toDate()).format(
+        "YYYY/MM/DD"
+      );
+      this.tags = report.tags;
     },
-    onPreviewImageChange(e: any): void {
-      const file = e.target.files[0]
-      const rawExtention: string = file.type
-      this.previewUrl = URL.createObjectURL(file)
-      this.imageFile = file
-      this.imageFileName = `${uuidv4()}.${rawExtention.split('/')[1]}`
+    close(): void {
+      this.$emit("close");
+    },
+    setImageUrl(): void {
+      this.report.imageUrl.then((url: string) => {
+        this.imageUrl = url;
+      });
+    },
+    date(): string {
+      return moment(new Date()).format("YYYY/MM/DD");
     },
     onSubmit(e: any): void {
-      reportStore.create({ imageFileName: this.imageFileName, imageFile: this.imageFile, title: this.title, url: this.url, tags: this.tags })
-      this.clear()
-      this.$emit("close")
+      reportStore.update({
+        id: this.id,
+        title: this.title,
+        url: this.url,
+        tags: this.tags
+      });
+      this.clear();
+      this.$emit("close");
     },
     clear(): void {
-      this.previewUrl = ''
-      this.imageFile = null
-      this.imageFileName = ''
-      this.title = ''
-      this.url = ''
-      this.createdAt = ''
-      this.tags = ''
+      this.title = "";
+      this.url = "";
+      this.createdAt = "";
+      this.tags = "";
     }
   }
-})
+});
 </script>
 
-<style>
-.v--modal-box {
-  -webkit-border-radius: 16px !important;
-  -moz-border-radius: 16px !important;
-  border-radius: 16px !important; 
-}
-</style>
-
 <style scoped>
-
 .header {
   position: absolute;
   right: 0;
@@ -120,27 +125,6 @@ export default Vue.extend({
   height: 28px;
   width: 28px;
   margin: 12px;
-}
-
-.preview-input {
-  display: none;
-}
-
-.camera-icon {
-  height: 48px;
-  width: 48px;
-}
-
-.preview-input-container {
-  position: relative;
-  height: 180px;
-  width: 180px;
-  border-radius: 16px;
-  background: #9A8584;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 0 auto;
 }
 
 .preview {
@@ -158,7 +142,7 @@ export default Vue.extend({
 }
 
 form {
-  margin: 0 auto; 
+  margin: 0 auto;
   width: 220px;
 }
 
@@ -167,32 +151,32 @@ form {
   font-weight: bold;
   margin-top: 12px;
   text-align: left;
-  color: #9A8584;
+  color: #9a8584;
 }
 
 .report-date {
   text-align: left;
-  color: #E6E0D9;
+  color: #e6e0d9;
 }
 
 .input {
   font-size: 0.8rem;
   border-radius: 8px;
-  width: 200px; 
+  width: 200px;
   height: 24px;
   padding: 4px 12px;
-  background-color: #E6E0D9;
+  background-color: #e6e0d9;
   outline-width: 0;
   border-style: solid;
   border: none;
 }
 
-input, label {
+input,
+label {
   display: block;
 }
 
 .submit-report {
   margin-top: 20px;
 }
-
 </style>

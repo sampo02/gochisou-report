@@ -12,7 +12,19 @@ export default class ReportModule extends VuexModule {
   @Mutation
   set(reports: any) {
     this.reports = []
-    this.reports = reports
+
+    this.reports = reports.map(
+      (report: any) => {
+        const storage = firebase.storage();
+        const gsReference = storage.refFromURL(
+          `gs://${process.env.storageBucket}/images/${report.imageFileName}`
+        );
+        const url = gsReference.getDownloadURL().then(url => {
+          return url;
+        });
+        return { imageUrl: Promise.resolve(url), ...report }
+      }
+    )
   }
 
   @Mutation
@@ -26,7 +38,7 @@ export default class ReportModule extends VuexModule {
     db.collection('reports').orderBy('createdAt', 'desc')
       .get()
       .then(querySnapshot => {
-        const documents = querySnapshot.docs.map(doc => doc.data())
+        const documents = querySnapshot.docs.map(doc => Object.assign({ id: doc.id }, { ...doc.data() }))
         this.set(documents)
         this.updateing(false)
       })
@@ -41,7 +53,7 @@ export default class ReportModule extends VuexModule {
             imageFileName: payload.imageFileName,
             title: payload.title,
             url: payload.url,
-            createdAt: firebase.firestore.Timestamp.fromDate(new Date("April 18, 2020")),
+            createdAt: firebase.firestore.Timestamp.fromDate(new Date()),
             tags: payload.tags
           })
       }
@@ -49,6 +61,21 @@ export default class ReportModule extends VuexModule {
     const storageRef = firebase.storage().ref()
     const imageRef = storageRef.child(`images/${payload.imageFileName}`)
     await imageRef.put(payload.imageFile)
+    this.fetch()
+  }
+
+  @Action({ rawError: true })
+  async update(payload: any): Promise<void> {
+    await (firestoreAction(() => {
+      {
+        return db.collection('reports').doc(payload.id)
+          .update({
+            title: payload.title,
+            url: payload.url,
+            tags: payload.tags
+          })
+      }
+    }) as Function)(this.context)
     this.fetch()
   }
 }

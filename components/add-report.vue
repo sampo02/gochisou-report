@@ -9,12 +9,13 @@
 </template>
 
 <script lang="ts">
-import Vue from "vue"
+import Vue from "vue";
+
 export default Vue.extend({
   props: {
     url: String
   }
-})
+});
 </script>
 
 <style scoped>
@@ -30,8 +31,8 @@ export default Vue.extend({
   height: 60px;
   width: 60px;
   border-radius: 50%;
-  background: #9A8584;
-  background: #685F56;
+  background: #9a8584;
+  background: #685f56;
   margin-left: auto;
   margin-right: auto;
 }
@@ -42,5 +43,4 @@ export default Vue.extend({
   margin-left: auto;
   margin-right: auto;
 }
-
 </style>

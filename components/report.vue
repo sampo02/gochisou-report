@@ -2,50 +2,51 @@
 <template>
   <div>
     <div class="report">
-      <a :href="url" target="_blank">
+      <a :href="report.url" target="_blank">
         <img v-if="imageUrl" class="image" :src="imageUrl" />
       </a>
-      <p class="title">{{ title }}</p>
-      <p class="date">2020/4/10</p>
-      <p class="tags">{{ tags }}</p>
+      <p class="title">{{ report.title }}</p>
+      <p class="date">{{ date }}</p>
+      <p class="tags">{{ report.tags }}</p>
       <img @click="edit" class="icon" src="@/assets/icon_edit.png" />
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import Vue from "vue"
-import firebase from "firebase"
+import Vue, { PropType } from "vue";
+import firebase from "firebase";
+import moment from "moment";
+import { Report } from "@/store/types";
 
 export type ReportData = {
-  imageUrl: string
-}
+  imageUrl: string;
+  date: string;
+};
 
 export default Vue.extend({
   data(): ReportData {
     return {
-      imageUrl: ''
-    }
+      imageUrl: "",
+      date: ""
+    };
   },
   props: {
-    imageFileName: String,
-    title: String,
-    url: String,
-    tags: String
+    report: Object as PropType<Report>
   },
   created() {
-    const storage = firebase.storage();
-    const gsReference = storage.refFromURL(`gs://${process.env.storageBucket}/images/${this.imageFileName}`);
-    gsReference.getDownloadURL().then(url => {
-      this.imageUrl = url
-    })
+    this.report.imageUrl.then((url: string) => {
+      this.imageUrl = url;
+    });
+
+    this.date = moment(this.report.createdAt.toDate()).format("YYYY/MM/DD");
   },
   methods: {
     edit(): void {
-      this.$emit("edit")
+      this.$emit("edit");
     }
   }
-})
+});
 </script>
 
 <style scoped>
@@ -65,7 +66,7 @@ export default Vue.extend({
   width: 100%;
   height: 180px;
   border-radius: 16px;
-  object-fit: cover
+  object-fit: cover;
 }
 
 p {
@@ -76,7 +77,7 @@ p {
 .title {
   font-size: 0.9rem;
   font-weight: bold;
-  color: #685F56;
+  color: #685f56;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -84,12 +85,11 @@ p {
 
 .date {
   font-size: 0.6rem;
-  color: #9A8584;
+  color: #9a8584;
 }
 
 .tags {
   font-size: 0.6rem;
-  color: #9A8584;
+  color: #9a8584;
 }
-
 </style>
