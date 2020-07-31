@@ -22,7 +22,7 @@
     "vuexfire": "^3.2.3"
   },
   "devDependencies": {
-    "@babel/runtime-corejs2": "^7.10.5",
+    "@babel/runtime-corejs2": "^7.11.0",
     "@nuxt/typescript-build": "^1.0.3",
     "@types/uuid": "^8.0.0",
     "core-js": "2"
