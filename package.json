@@ -23,7 +23,7 @@
   },
   "devDependencies": {
     "@babel/runtime-corejs2": "^7.10.5",
-    "@nuxt/typescript-build": "^1.0.3",
+    "@nuxt/typescript-build": "^2.0.2",
     "@types/uuid": "^8.0.0",
     "core-js": "2"
   }
