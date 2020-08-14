@@ -8,7 +8,9 @@
     "dev": "nuxt",
     "build": "nuxt build",
     "start": "nuxt start",
-    "generate": "nuxt generate"
+    "generate": "nuxt generate",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "dependencies": {
     "@nuxtjs/firebase": "^6.1.1",
@@ -22,9 +24,16 @@
     "vuexfire": "^3.2.4"
   },
   "devDependencies": {
+    "@babel/core": "^7.11.1",
     "@babel/runtime-corejs2": "^7.11.2",
     "@nuxt/typescript-build": "^1.0.3",
+    "@storybook/addon-actions": "^6.0.6",
+    "@storybook/addon-essentials": "^6.0.6",
+    "@storybook/addon-links": "^6.0.6",
+    "@storybook/vue": "^6.0.6",
     "@types/uuid": "^8.3.0",
-    "core-js": "3"
+    "babel-loader": "^8.1.0",
+    "core-js": "3",
+    "react-is": "^16.13.1"
   }
 }

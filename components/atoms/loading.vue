@@ -1,6 +1,6 @@
 <template>
   <div>
-    <img class="loading" src="@/assets/loading.gif" />
+    <img src="@/assets/loading.gif" />
   </div>
 </template>
 
@@ -10,7 +10,7 @@ export default Vue.extend({})
 </script>
 
 <style scoped>
-.loading {
+img {
   height: 80px;
   width: 80px;
 }
