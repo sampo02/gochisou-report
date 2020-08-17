@@ -28,7 +28,7 @@
     "@babel/runtime-corejs2": "^7.11.2",
     "@nuxt/typescript-build": "^1.0.3",
     "@storybook/addon-actions": "^6.0.6",
-    "@storybook/addon-essentials": "^6.0.6",
+    "@storybook/addon-essentials": "^6.0.10",
     "@storybook/addon-links": "^6.0.6",
     "@storybook/vue": "^6.0.6",
     "@types/uuid": "^8.3.0",
