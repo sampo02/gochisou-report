@@ -30,7 +30,7 @@
     "@storybook/addon-actions": "^6.0.6",
     "@storybook/addon-essentials": "^6.0.6",
     "@storybook/addon-links": "^6.0.6",
-    "@storybook/vue": "^6.0.6",
+    "@storybook/vue": "^6.0.10",
     "@types/uuid": "^8.3.0",
     "babel-loader": "^8.1.0",
     "core-js": "3",
