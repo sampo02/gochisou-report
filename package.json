@@ -14,7 +14,7 @@
   },
   "dependencies": {
     "@nuxtjs/firebase": "^6.1.1",
-    "@nuxtjs/pwa": "^3.0.2",
+    "@nuxtjs/pwa": "^3.2.2",
     "firebase": "^7.21.1",
     "moment": "^2.29.0",
     "node-forge": "^0.10.0",
