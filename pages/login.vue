@@ -3,7 +3,11 @@
     <div v-if="!isLoading">
       <img class="logo" src="@/assets/logo.png" />
       <div>
-        <styled-button class="login-button" label="ログイン" @click.native="login" />
+        <styled-button
+          class="login-button"
+          label="ログイン"
+          @click.native="login"
+        />
       </div>
     </div>
     <div v-else>
@@ -13,45 +17,45 @@
 </template>
 
 <script lang="ts">
-import Vue from "vue";
-import firebase from "firebase";
-import loading from "@/components/atoms/loading.vue";
-import styledButton from "@/components/atoms/styled-button.vue";
+import Vue from 'vue'
+import firebase from 'firebase'
+import loading from '@/components/atoms/loading.vue'
+import styledButton from '@/components/atoms/styled-button.vue'
 
 interface LoginData {
-  isLoading: boolean;
+  isLoading: boolean
 }
 
 export default Vue.extend({
   data(): LoginData {
     return {
-      isLoading: false
-    };
+      isLoading: false,
+    }
   },
   components: {
     loading,
-    styledButton
+    styledButton,
   },
   mounted() {
-    if (window.location.hash === "#redirecting") {
-      this.isLoading = true;
+    if (window.location.hash === '#redirecting') {
+      this.isLoading = true
     }
-    firebase.auth().onAuthStateChanged(user => {
+    firebase.auth().onAuthStateChanged((user) => {
       if (user) {
-        this.$router.push("/");
+        this.$router.push('/')
       }
-    });
+    })
   },
   methods: {
     login(): void {
-      this.isLoading = true;
-      window.location.hash = "redirecting";
+      this.isLoading = true
+      window.location.hash = 'redirecting'
 
-      const provider = new firebase.auth.GoogleAuthProvider();
-      firebase.auth().signInWithRedirect(provider);
-    }
-  }
-});
+      const provider = new firebase.auth.GoogleAuthProvider()
+      firebase.auth().signInWithRedirect(provider)
+    },
+  },
+})
 </script>
 
 <style scoped>

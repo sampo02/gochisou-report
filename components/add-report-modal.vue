@@ -1,9 +1,12 @@
-
 <template>
   <div>
     <modal name="add-report" :width="340" :height="560">
       <div class="header">
-        <img class="cancel-icon" src="@/assets/icon_cancel.png" @click="close" />
+        <img
+          class="cancel-icon"
+          src="@/assets/icon_cancel.png"
+          @click="close"
+        />
       </div>
       <div class="body">
         <form @submit.prevent="onSubmit">
@@ -46,75 +49,78 @@
 </template>
 
 <script lang="ts">
-import Vue from "vue";
-import firebase from "firebase";
-import moment from "moment";
-import { Report } from "@/store/types";
-import { reportStore } from "@/store";
-import styledButton from "@/components/atoms/styled-button.vue";
-import { v4 as uuidv4 } from "uuid";
+import Vue from 'vue'
+import firebase from 'firebase'
+import moment from 'moment'
+import { NewReport, Report } from '@/types'
+import styledButton from '@/components/atoms/styled-button.vue'
+import { v4 as uuidv4 } from 'uuid'
 
 export type ReportData = {
-  previewUrl: string;
-  imageFile: Blob | null;
-  imageFileName: string;
-  title: string;
-  url: string;
-  createdAt: string;
-  tags: string;
-};
+  previewUrl: string
+  imageFile: Blob | null
+  imageFileName: string
+  title: string
+  url: string
+  createdAt: string
+  tags: string
+}
 
 export default Vue.extend({
   data(): ReportData {
     return {
-      previewUrl: "",
+      previewUrl: '',
       imageFile: null,
-      imageFileName: "",
-      title: "",
-      url: "",
-      createdAt: "",
-      tags: ""
-    };
+      imageFileName: '',
+      title: '',
+      url: '',
+      createdAt: '',
+      tags: '',
+    }
   },
   components: {
-    styledButton
+    styledButton,
   },
   methods: {
     close(): void {
-      this.$emit("close");
+      this.$emit('close')
     },
     onPreviewImageChange(e: any): void {
-      const file = e.target.files[0];
-      const rawExtention: string = file.type;
-      this.previewUrl = URL.createObjectURL(file);
-      this.imageFile = file;
-      this.imageFileName = `${uuidv4()}.${rawExtention.split("/")[1]}`;
+      const file = e.target.files[0]
+      const rawExtention: string = file.type
+      this.previewUrl = URL.createObjectURL(file)
+      this.imageFile = file
+      this.imageFileName = `${uuidv4()}.${rawExtention.split('/')[1]}`
     },
     date(): string {
-      return moment(new Date()).format("YYYY/MM/DD");
+      return moment(new Date()).format('YYYY/MM/DD')
     },
     onSubmit(e: any): void {
-      reportStore.create({
-        imageFileName: this.imageFileName,
+      if (this.imageFile === null) {
+        return
+      }
+      const newReport: NewReport = {
         imageFile: this.imageFile,
+        imageFileName: this.imageFileName,
         title: this.title,
+        createdAt: firebase.firestore.Timestamp.fromDate(new Date()),
         url: this.url,
-        tags: this.tags
-      });
-      this.clear();
-      this.$emit("close");
+        tags: '',
+      }
+      this.clear()
+      this.$emit('createReport', newReport)
     },
     clear(): void {
-      this.previewUrl = "";
-      this.imageFile = null;
-      this.imageFileName = "";
-      this.title = "";
-      this.url = "";
-      this.createdAt = "";
-      this.tags = "";
-    }
-  }
-});
+      this.previewUrl = ''
+      this.imageFile = null
+      this.imageFileName = ''
+      this.title = ''
+      this.url = ''
+      this.createdAt = ''
+      this.tags = ''
+    },
+  },
+})
 </script>
 
 <style>
