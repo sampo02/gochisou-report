@@ -3,9 +3,9 @@
     <div class="header">
       <img class="header-image" src="@/assets/header.png" />
     </div>
-    <div class="container">
+    <div @scroll="handleScroll()" class="container">
       <loading v-if="loading" />
-      <div v-for="(report, index) in reports" :key="index" class="row">
+      <div v-for="(report, index) in reports" :key="report.id" class="row">
         <div v-if="index % 2 === 0" class="column">
           <div class="report-left">
             <report @edit="showEditReportModal(report)" :report="report" />
@@ -33,6 +33,7 @@
 <script lang="ts">
 import Vue from 'vue'
 import firebase from 'firebase'
+import { firestore } from 'firebase'
 import { db } from '@/plugins/db'
 import { NewReport, Report, UpdatedReport } from '@/types'
 import addReport from '@/components/add-report.vue'
@@ -49,6 +50,7 @@ export type IndexData = {
   activeReport: Report | null
   reports: Report[]
   loading: boolean
+  lastVisibleReport: firestore.QueryDocumentSnapshot<firestore.DocumentData> | null
 }
 
 export default Vue.extend({
@@ -57,6 +59,7 @@ export default Vue.extend({
       activeReport: null,
       reports: [],
       loading: false,
+      lastVisibleReport: null,
     }
   },
   components: {
@@ -67,32 +70,55 @@ export default Vue.extend({
     report,
     styledButton,
   },
+  mounted() {
+    window.addEventListener('scroll', this.handleScroll)
+  },
   created() {
     this.fetch()
+  },
+  destroyed() {
+    window.removeEventListener('scroll', this.handleScroll)
   },
   methods: {
     fetch(): void {
       this.loading = true
-      this.reports = []
-      db.collection('reports')
-        .orderBy('createdAt', 'desc')
-        .get()
-        .then((querySnapshot) => {
-          const documents = querySnapshot.docs.map((doc) =>
-            Object.assign({ id: doc.id }, { ...doc.data() })
-          )
-          this.reports = documents.map((report: any) => {
-            const storage = firebase.storage()
-            const gsReference = storage.refFromURL(
-              `gs://${process.env.storageBucket}/images/${report.imageFileName}`
-            )
-            const url = gsReference.getDownloadURL().then((url) => {
-              return url
-            })
-            return { imageUrl: Promise.resolve(url), ...report }
+      if (this.lastVisibleReport === null) {
+        db.collection('reports')
+          .orderBy('createdAt', 'desc')
+          .limit(20)
+          .get()
+          .then((querySnapshot) => {
+            this.setReports(querySnapshot)
           })
-          this.loading = false
+      } else {
+        db.collection('reports')
+          .orderBy('createdAt', 'desc')
+          .startAfter(this.lastVisibleReport)
+          .limit(20)
+          .get()
+          .then((querySnapshot) => {
+            this.setReports(querySnapshot)
+          })
+      }
+      this.loading = false
+    },
+    setReports(
+      querySnapshot: firestore.QuerySnapshot<firestore.DocumentData>
+    ): void {
+      const documents = querySnapshot.docs.map((doc) =>
+        Object.assign({ id: doc.id }, { ...doc.data() })
+      )
+      documents.map((report: any) => {
+        const storage = firebase.storage()
+        const gsReference = storage.refFromURL(
+          `gs://${process.env.storageBucket}/images/${report.imageFileName}`
+        )
+        const url = gsReference.getDownloadURL().then((url) => {
+          return url
         })
+        this.reports.push({ imageUrl: Promise.resolve(url), ...report })
+      })
+      this.lastVisibleReport = querySnapshot.docs[documents.length - 1]
     },
     showAddReportModal(): void {
       this.$modal.show('add-report')
@@ -129,6 +155,15 @@ export default Vue.extend({
       })
       this.fetch()
       this.$modal.hide('edit-report')
+    },
+    handleScroll() {
+      if (
+        document.documentElement.scrollTop +
+          document.documentElement.clientHeight >=
+        document.documentElement.scrollHeight
+      ) {
+        this.fetch()
+      }
     },
     logout(): void {
       firebase
