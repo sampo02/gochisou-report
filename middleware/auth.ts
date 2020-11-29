@@ -1,4 +1,4 @@
-import firebase from "firebase"
+import firebase from 'firebase'
 import { Middleware } from '@nuxt/types'
 
 const authMiddleware: Middleware = (context) => {

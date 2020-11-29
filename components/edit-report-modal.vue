@@ -1,9 +1,17 @@
-
 <template>
   <div>
-    <modal @before-open="beforeOpen" name="edit-report" :width="340" :height="560">
+    <modal
+      @before-open="beforeOpen"
+      name="edit-report"
+      :width="340"
+      :height="560"
+    >
       <div class="header">
-        <img class="cancel-icon" src="@/assets/icon_cancel.png" @click="close" />
+        <img
+          class="cancel-icon"
+          src="@/assets/icon_cancel.png"
+          @click="close"
+        />
       </div>
       <div class="body">
         <form @submit.prevent="onSubmit">
@@ -36,83 +44,80 @@
 </template>
 
 <script lang="ts">
-import Vue, { PropType } from "vue";
-import firebase from "firebase";
-import moment from "moment";
-import { Report } from "@/store/types";
-import { reportStore } from "@/store";
-import styledButton from "@/components/atoms/styled-button.vue";
-import { v4 as uuidv4 } from "uuid";
+import Vue, { PropType } from 'vue'
+import firebase from 'firebase'
+import moment from 'moment'
+import { Report, UpdatedReport } from '@/types'
+import styledButton from '@/components/atoms/styled-button.vue'
+import { v4 as uuidv4 } from 'uuid'
 
 export type EditReportModalData = {
-  id: string;
-  title: string;
-  imageUrl: string;
-  url: string;
-  createdAt: string;
-  tags: string;
-};
+  id: string
+  title: string
+  imageUrl: string
+  url: string
+  createdAt: string
+  tags: string
+}
 
 export default Vue.extend({
   data(): EditReportModalData {
     return {
-      id: "",
-      title: "",
-      imageUrl: "",
-      url: "",
-      createdAt: "",
-      tags: ""
-    };
+      id: '',
+      title: '',
+      imageUrl: '',
+      url: '',
+      createdAt: '',
+      tags: '',
+    }
   },
   props: {
-    report: Object as PropType<Report>
+    report: Object as PropType<Report>,
   },
   components: {
-    styledButton
+    styledButton,
   },
   methods: {
     beforeOpen(event: any): void {
       const report: Report = event.params.report
       this.id = report.id
       report.imageUrl.then((url: string) => {
-        this.imageUrl = url;
-      });
-      this.title = report.title;
-      this.url = report.url;
-      this.createdAt = moment(report.createdAt.toDate()).format(
-        "YYYY/MM/DD"
-      );
-      this.tags = report.tags;
+        this.imageUrl = url
+      })
+      this.title = report.title
+      this.url = report.url
+      this.createdAt = moment(report.createdAt.toDate()).format('YYYY/MM/DD')
+      this.tags = report.tags
     },
     close(): void {
-      this.$emit("close");
+      this.$emit('close')
     },
     setImageUrl(): void {
       this.report.imageUrl.then((url: string) => {
-        this.imageUrl = url;
-      });
+        this.imageUrl = url
+      })
     },
     date(): string {
-      return moment(new Date()).format("YYYY/MM/DD");
+      return moment(new Date()).format('YYYY/MM/DD')
     },
     onSubmit(e: any): void {
-      reportStore.update({
+      const updatedReport: UpdatedReport = {
         id: this.id,
         title: this.title,
         url: this.url,
-        tags: this.tags
-      });
-      this.clear();
-      this.$emit("close");
+        tags: '',
+      }
+      this.clear()
+      this.$emit('updateReport', updatedReport)
     },
     clear(): void {
-      this.title = "";
-      this.url = "";
-      this.createdAt = "";
-      this.tags = "";
-    }
-  }
-});
+      this.title = ''
+      this.url = ''
+      this.createdAt = ''
+      this.tags = ''
+    },
+  },
+})
 </script>
 
 <style scoped>

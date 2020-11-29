@@ -1,4 +1,3 @@
-
 <template>
   <div>
     <div class="report">
@@ -14,39 +13,39 @@
 </template>
 
 <script lang="ts">
-import Vue, { PropType } from "vue";
-import firebase from "firebase";
-import moment from "moment";
-import { Report } from "@/store/types";
+import Vue, { PropType } from 'vue'
+import firebase from 'firebase'
+import moment from 'moment'
+import { Report } from '@/types'
 
 export type ReportData = {
-  imageUrl: string;
-  date: string;
-};
+  imageUrl: string
+  date: string
+}
 
 export default Vue.extend({
   data(): ReportData {
     return {
-      imageUrl: "",
-      date: ""
-    };
+      imageUrl: '',
+      date: '',
+    }
   },
   props: {
-    report: Object as PropType<Report>
+    report: Object as PropType<Report>,
   },
   created() {
     this.report.imageUrl.then((url: string) => {
-      this.imageUrl = url;
-    });
+      this.imageUrl = url
+    })
 
-    this.date = moment(this.report.createdAt.toDate()).format("YYYY/MM/DD");
+    this.date = moment(this.report.createdAt.toDate()).format('YYYY/MM/DD')
   },
   methods: {
     edit(): void {
-      this.$emit("edit");
-    }
-  }
-});
+      this.$emit('edit')
+    },
+  },
+})
 </script>
 
 <style scoped>

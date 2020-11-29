@@ -8,8 +8,8 @@
 import Vue from 'vue'
 export default Vue.extend({
   props: {
-    label: String
-  }
+    label: String,
+  },
 })
 </script>
 
@@ -18,9 +18,9 @@ export default Vue.extend({
   width: 160px;
   height: 48px;
   text-align: center;
-  background-color: #685F56;
-  color: #FFFFFF;
-  font-size: 1.0rem; 
+  background-color: #685f56;
+  color: #ffffff;
+  font-size: 1rem;
   border-radius: 32px;
 }
 </style>

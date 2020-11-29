@@ -5,7 +5,6 @@
 </template>
 
 <style>
-
 @font-face {
   font-family: 'SawarabiGothic-Regular';
   src: url('../assets/SawarabiGothic-Regular.ttf');

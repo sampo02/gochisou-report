@@ -19,35 +19,45 @@
       </div>
     </div>
     <add-report @click.native="showAddReportModal" />
-    <add-report-modal @close="hideAddReportModal" />
-    <edit-report-modal @close="hideEditReportModal" />
+    <add-report-modal
+      @close="hideAddReportModal"
+      @createReport="createReport"
+    />
+    <edit-report-modal
+      @close="hideEditReportModal"
+      @updateReport="updateReport"
+    />
   </div>
 </template>
 
 <script lang="ts">
-import Vue from "vue";
-import firebase from "firebase";
-import { reportStore } from "@/store";
-import { Report } from "@/store/types";
-import addReport from "@/components/add-report.vue";
-import addReportModal from "@/components/add-report-modal.vue";
-import editReportModal from "@/components/edit-report-modal.vue";
-import loading from "@/components/atoms/loading.vue";
-import report from "@/components/report.vue";
-import styledButton from "@/components/atoms/styled-button.vue";
-import VModal from "vue-js-modal";
+import Vue from 'vue'
+import firebase from 'firebase'
+import { db } from '@/plugins/db'
+import { NewReport, Report, UpdatedReport } from '@/types'
+import addReport from '@/components/add-report.vue'
+import addReportModal from '@/components/add-report-modal.vue'
+import editReportModal from '@/components/edit-report-modal.vue'
+import loading from '@/components/atoms/loading.vue'
+import report from '@/components/report.vue'
+import styledButton from '@/components/atoms/styled-button.vue'
+import VModal from 'vue-js-modal'
 
-Vue.use(VModal, { dynamic: true, dynamicDefaults: { clickToClose: false } });
+Vue.use(VModal, { dynamic: true, dynamicDefaults: { clickToClose: false } })
 
 export type IndexData = {
-  activeReport: Report | null;
-};
+  activeReport: Report | null
+  reports: Report[]
+  loading: boolean
+}
 
 export default Vue.extend({
   data(): IndexData {
     return {
-      activeReport: null
-    };
+      activeReport: null,
+      reports: [],
+      loading: false,
+    }
   },
   components: {
     addReport,
@@ -55,43 +65,81 @@ export default Vue.extend({
     editReportModal,
     loading,
     report,
-    styledButton
+    styledButton,
   },
   created() {
-    reportStore.fetch();
-  },
-  computed: {
-    reports(): Report[] {
-      return reportStore.reports;
-    },
-    loading(): boolean {
-      return reportStore.loading;
-    }
+    this.fetch()
   },
   methods: {
+    fetch(): void {
+      this.loading = true
+      this.reports = []
+      db.collection('reports')
+        .orderBy('createdAt', 'desc')
+        .get()
+        .then((querySnapshot) => {
+          const documents = querySnapshot.docs.map((doc) =>
+            Object.assign({ id: doc.id }, { ...doc.data() })
+          )
+          this.reports = documents.map((report: any) => {
+            const storage = firebase.storage()
+            const gsReference = storage.refFromURL(
+              `gs://${process.env.storageBucket}/images/${report.imageFileName}`
+            )
+            const url = gsReference.getDownloadURL().then((url) => {
+              return url
+            })
+            return { imageUrl: Promise.resolve(url), ...report }
+          })
+          this.loading = false
+        })
+    },
     showAddReportModal(): void {
-      this.$modal.show("add-report");
+      this.$modal.show('add-report')
     },
     hideAddReportModal(): void {
-      this.$modal.hide("add-report");
+      this.$modal.hide('add-report')
+    },
+    async createReport(newReport: NewReport): Promise<void> {
+      await db.collection('reports').add({
+        imageFileName: newReport.imageFileName,
+        title: newReport.title,
+        url: newReport.url,
+        createdAt: firebase.firestore.Timestamp.fromDate(new Date()),
+        tags: newReport.tags,
+      })
+      const storageRef = firebase.storage().ref()
+      const imageRef = storageRef.child(`images/${newReport.imageFileName}`)
+      await imageRef.put(newReport.imageFile)
+      this.fetch()
+      this.$modal.hide('add-report')
     },
     showEditReportModal(report: Report): void {
-      this.activeReport = report;
-      this.$modal.show("edit-report", { report: report });
+      this.activeReport = report
+      this.$modal.show('edit-report', { report: report })
     },
     hideEditReportModal(): void {
-      this.$modal.hide("edit-report");
+      this.$modal.hide('edit-report')
+    },
+    async updateReport(updatedReport: UpdatedReport): Promise<void> {
+      await db.collection('reports').doc(updatedReport.id).update({
+        title: updatedReport.title,
+        url: updatedReport.url,
+        tags: updatedReport.tags,
+      })
+      this.fetch()
+      this.$modal.hide('edit-report')
     },
     logout(): void {
       firebase
         .auth()
         .signOut()
         .then(() => {
-          this.$router.push("/login");
-        });
-    }
-  }
-});
+          this.$router.push('/login')
+        })
+    },
+  },
+})
 </script>
 
 <style scoped>
