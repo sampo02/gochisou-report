@@ -3,6 +3,9 @@
     <div class="report">
       <a :href="report.url" target="_blank">
         <img v-if="imageUrl" class="image" :src="imageUrl" />
+        <div v-else class="loading">
+          <img class="loading-image" src="@/assets/logo.png" />
+        </div>
       </a>
       <p class="title">{{ report.title }}</p>
       <p class="date">{{ date }}</p>
@@ -14,7 +17,6 @@
 
 <script lang="ts">
 import Vue, { PropType } from 'vue'
-import firebase from 'firebase'
 import moment from 'moment'
 import { Report } from '@/types'
 
@@ -66,6 +68,19 @@ export default Vue.extend({
   height: 180px;
   border-radius: 16px;
   object-fit: cover;
+}
+
+.loading {
+  height: 180px;
+  text-align: center;
+  vertical-align: middle;
+  display: table-cell;
+}
+
+.loading-image {
+  height: 52px;
+  display: block;
+  margin: auto;
 }
 
 p {

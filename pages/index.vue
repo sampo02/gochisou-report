@@ -4,14 +4,20 @@
       <img class="header-image" src="@/assets/header.png" />
     </div>
     <div @scroll="handleScroll()" class="container">
-      <loading v-if="loading" />
-      <div v-for="(report, index) in reports" :key="report.id" class="row">
-        <div v-if="index % 2 === 0" class="column">
+      <loading v-if="loading && reports.length === 0" />
+      <div v-for="(report, index) in reports" :key="index">
+        <div
+          v-if="index % 2 === 0"
+          :class="['column', { 'column-last': index === reports.length - 2 }]"
+        >
           <div class="report-left">
             <report @edit="showEditReportModal(report)" :report="report" />
           </div>
         </div>
-        <div v-else class="column">
+        <div
+          v-else
+          :class="['column', { 'column-last': index === reports.length - 1 }]"
+        >
           <div class="report-right">
             <report @edit="showEditReportModal(report)" :report="report" />
           </div>
@@ -32,8 +38,9 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import firebase from 'firebase'
+import firebase from 'firebase/app'
 import { firestore } from 'firebase'
+import 'firebase/storage'
 import { db } from '@/plugins/db'
 import { NewReport, Report, UpdatedReport } from '@/types'
 import addReport from '@/components/add-report.vue'
@@ -89,8 +96,9 @@ export default Vue.extend({
           .get()
           .then((querySnapshot) => {
             this.setReports(querySnapshot)
+            this.loading = false
           })
-      } else {
+      } else if (this.lastVisibleReport !== undefined) {
         db.collection('reports')
           .orderBy('createdAt', 'desc')
           .startAfter(this.lastVisibleReport)
@@ -98,9 +106,9 @@ export default Vue.extend({
           .get()
           .then((querySnapshot) => {
             this.setReports(querySnapshot)
+            this.loading = false
           })
       }
-      this.loading = false
     },
     setReports(
       querySnapshot: firestore.QuerySnapshot<firestore.DocumentData>
@@ -160,7 +168,8 @@ export default Vue.extend({
       if (
         document.documentElement.scrollTop +
           document.documentElement.clientHeight >=
-        document.documentElement.scrollHeight
+          document.documentElement.scrollHeight &&
+        !this.loading
       ) {
         this.fetch()
       }
@@ -205,6 +214,10 @@ export default Vue.extend({
   float: left;
   width: 50%;
   margin-top: 12px;
+}
+
+.column-last {
+  margin-bottom: 100px;
 }
 
 .report-left {

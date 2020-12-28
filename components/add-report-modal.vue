@@ -50,7 +50,8 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import firebase from 'firebase'
+import firebase from 'firebase/app'
+import 'firebase/firestore'
 import moment from 'moment'
 import { NewReport, Report } from '@/types'
 import styledButton from '@/components/atoms/styled-button.vue'

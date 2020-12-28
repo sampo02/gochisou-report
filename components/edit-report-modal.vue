@@ -45,7 +45,6 @@
 
 <script lang="ts">
 import Vue, { PropType } from 'vue'
-import firebase from 'firebase'
 import moment from 'moment'
 import { Report, UpdatedReport } from '@/types'
 import styledButton from '@/components/atoms/styled-button.vue'
