@@ -155,14 +155,17 @@ export default Vue.extend({
     hideEditReportModal(): void {
       this.$modal.hide('edit-report')
     },
-    async updateReport(updatedReport: UpdatedReport): Promise<void> {
-      await db.collection('reports').doc(updatedReport.id).update({
+    updateReport(updatedReport: UpdatedReport): void {
+      db.collection('reports').doc(updatedReport.id).update({
         title: updatedReport.title,
         url: updatedReport.url,
         tags: updatedReport.tags,
+      }).then(() => {
+        this.lastVisibleReport = null
+        this.reports = []
+        this.fetch()
+        this.$modal.hide('edit-report')
       })
-      this.fetch()
-      this.$modal.hide('edit-report')
     },
     handleScroll() {
       if (

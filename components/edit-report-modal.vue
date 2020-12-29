@@ -104,7 +104,7 @@ export default Vue.extend({
         id: this.id,
         title: this.title,
         url: this.url,
-        tags: '',
+        tags: this.tags,
       }
       this.clear()
       this.$emit('updateReport', updatedReport)
