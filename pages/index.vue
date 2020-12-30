@@ -2,13 +2,18 @@
   <div>
     <div class="header">
       <img class="header-image" src="@/assets/header.png" />
+      <img
+        @click="showSearchReportsModal"
+        class="header-search-image"
+        src="@/assets/logo.png"
+      />
     </div>
     <div @scroll="handleScroll()" class="container">
       <loading v-if="loading && reports.length === 0" />
       <div v-for="(report, index) in reports" :key="index">
         <div
           v-if="index % 2 === 0"
-          :class="['column', { 'column-last': index === reports.length - 2 }]"
+          :class="['column', { 'column-last': index === reports.length - 1 }]"
         >
           <div class="report-left">
             <report @edit="showEditReportModal(report)" :report="report" />
@@ -33,6 +38,10 @@
       @close="hideEditReportModal"
       @updateReport="updateReport"
     />
+    <search-reports-modal
+      @close="hideSearchReportsModal"
+      @searchReports="searchReports"
+    />
   </div>
 </template>
 
@@ -46,6 +55,7 @@ import { NewReport, Report, UpdatedReport } from '@/types'
 import addReport from '@/components/add-report.vue'
 import addReportModal from '@/components/add-report-modal.vue'
 import editReportModal from '@/components/edit-report-modal.vue'
+import searchReportsModal from '@/components/search-reports-modal.vue'
 import loading from '@/components/atoms/loading.vue'
 import report from '@/components/report.vue'
 import styledButton from '@/components/atoms/styled-button.vue'
@@ -58,6 +68,7 @@ export type IndexData = {
   reports: Report[]
   loading: boolean
   lastVisibleReport: firestore.QueryDocumentSnapshot<firestore.DocumentData> | null
+  showingSearchedReports: boolean
 }
 
 export default Vue.extend({
@@ -67,12 +78,14 @@ export default Vue.extend({
       reports: [],
       loading: false,
       lastVisibleReport: null,
+      showingSearchedReports: false,
     }
   },
   components: {
     addReport,
     addReportModal,
     editReportModal,
+    searchReportsModal,
     loading,
     report,
     styledButton,
@@ -156,23 +169,53 @@ export default Vue.extend({
       this.$modal.hide('edit-report')
     },
     updateReport(updatedReport: UpdatedReport): void {
-      db.collection('reports').doc(updatedReport.id).update({
-        title: updatedReport.title,
-        url: updatedReport.url,
-        tags: updatedReport.tags,
-      }).then(() => {
+      db.collection('reports')
+        .doc(updatedReport.id)
+        .update({
+          title: updatedReport.title,
+          url: updatedReport.url,
+          tags: updatedReport.tags,
+        })
+        .then(() => {
+          this.lastVisibleReport = null
+          this.reports = []
+          this.fetch()
+          this.$modal.hide('edit-report')
+        })
+    },
+    showSearchReportsModal(report: Report): void {
+      this.$modal.show('search-reports')
+    },
+    hideSearchReportsModal(): void {
+      this.$modal.hide('search-reports')
+    },
+    searchReports(searchQuery: string): void {
+      this.showingSearchedReports = true
+      this.loading = true
+      this.reports = []
+      if (searchQuery.length === 0) {
         this.lastVisibleReport = null
-        this.reports = []
+        this.showingSearchedReports = false
         this.fetch()
-        this.$modal.hide('edit-report')
-      })
+      } else {
+        db.collection('reports')
+          .where('tags', 'array-contains-any', [searchQuery])
+          .orderBy('createdAt', 'desc')
+          .get()
+          .then((querySnapshot) => {
+            this.lastVisibleReport = null
+            this.setReports(querySnapshot)
+            this.loading = false
+          })
+      }
     },
     handleScroll() {
       if (
         document.documentElement.scrollTop +
           document.documentElement.clientHeight >=
           document.documentElement.scrollHeight &&
-        !this.loading
+        !this.loading &&
+        !this.showingSearchedReports
       ) {
         this.fetch()
       }
@@ -204,6 +247,14 @@ export default Vue.extend({
   display: block;
   margin-left: auto;
   margin-right: auto;
+}
+
+.header-search-image {
+  height: 42px;
+  position: absolute;
+  right: 16px;
+  top: 8px;
+  transform: rotate(90deg);
 }
 
 .container {

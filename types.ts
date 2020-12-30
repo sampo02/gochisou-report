@@ -7,7 +7,7 @@ export interface Report {
   title: string
   createdAt: firestore.Timestamp
   url: string
-  tags: string
+  tags: string[]
 }
 
 export interface NewReport {
@@ -16,12 +16,12 @@ export interface NewReport {
   title: string
   createdAt: firestore.Timestamp
   url: string
-  tags: string
+  tags: string[]
 }
 
 export interface UpdatedReport {
   id: string
   title: string
   url: string
-  tags: string
+  tags: string[]
 }

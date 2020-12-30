@@ -106,7 +106,7 @@ export default Vue.extend({
         title: this.title,
         createdAt: firebase.firestore.Timestamp.fromDate(new Date()),
         url: this.url,
-        tags: this.tags,
+        tags: this.tags.replaceAll('　', ' ').split(' '),
       }
       this.clear()
       this.$emit('createReport', newReport)

@@ -9,7 +9,11 @@
       </a>
       <p class="title">{{ report.title }}</p>
       <p class="date">{{ date }}</p>
-      <p class="tags">{{ report.tags }}</p>
+      <p class="tags">
+        <span v-for="(tag, i) in report.tags" :key="i">
+          {{ tag }}
+        </span>
+      </p>
       <img @click="edit" class="icon" src="@/assets/icon_edit.png" />
     </div>
   </div>

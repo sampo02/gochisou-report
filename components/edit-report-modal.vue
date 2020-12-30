@@ -86,7 +86,7 @@ export default Vue.extend({
       this.title = report.title
       this.url = report.url
       this.createdAt = moment(report.createdAt.toDate()).format('YYYY/MM/DD')
-      this.tags = report.tags
+      this.tags = report.tags.join(' ')
     },
     close(): void {
       this.$emit('close')
@@ -104,7 +104,7 @@ export default Vue.extend({
         id: this.id,
         title: this.title,
         url: this.url,
-        tags: this.tags,
+        tags: this.tags.replaceAll('　', ' ').split(' '),
       }
       this.clear()
       this.$emit('updateReport', updatedReport)
