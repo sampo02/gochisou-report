@@ -5,7 +5,7 @@
       <img
         @click="showSearchReportsModal"
         class="header-search-image"
-        src="@/assets/logo.png"
+        src="@/assets/icon_search.png"
       />
     </div>
     <div @scroll="handleScroll()" class="container">
@@ -250,10 +250,10 @@ export default Vue.extend({
 }
 
 .header-search-image {
-  height: 42px;
+  height: 24px;
   position: absolute;
   right: 16px;
-  top: 8px;
+  top: 22px;
   transform: rotate(90deg);
 }
 
