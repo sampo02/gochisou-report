@@ -158,6 +158,8 @@ export default Vue.extend({
       const storageRef = firebase.storage().ref()
       const imageRef = storageRef.child(`images/${newReport.imageFileName}`)
       await imageRef.put(newReport.imageFile)
+      this.lastVisibleReport = null
+      this.reports = []
       this.fetch()
       this.$modal.hide('add-report')
     },
