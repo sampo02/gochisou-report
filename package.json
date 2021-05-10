@@ -20,7 +20,7 @@
     "vue-js-modal": "^2.0.0-rc.6"
   },
   "devDependencies": {
-    "@nuxt/types": "^2.14.7",
+    "@nuxt/types": "^2.15.5",
     "@nuxt/typescript-build": "^2.0.3",
     "@types/uuid": "^8.3.0",
     "@typescript-eslint/eslint-plugin": "^4.8.2",
