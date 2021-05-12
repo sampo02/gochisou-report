@@ -48,9 +48,13 @@
 <script lang="ts">
 import Vue from 'vue'
 import firebase from 'firebase/app'
-import { firestore } from 'firebase'
 import 'firebase/storage'
 import { db } from '@/plugins/db'
+import {
+  DocumentData,
+  QueryDocumentSnapshot,
+  QuerySnapshot,
+} from '@firebase/firestore-types'
 import { NewReport, Report, UpdatedReport } from '@/types'
 import addReport from '@/components/add-report.vue'
 import addReportModal from '@/components/add-report-modal.vue'
@@ -67,7 +71,7 @@ export type IndexData = {
   activeReport: Report | null
   reports: Report[]
   loading: boolean
-  lastVisibleReport: firestore.QueryDocumentSnapshot<firestore.DocumentData> | null
+  lastVisibleReport: QueryDocumentSnapshot<DocumentData> | null
   showingSearchedReports: boolean
 }
 
@@ -123,9 +127,7 @@ export default Vue.extend({
           })
       }
     },
-    setReports(
-      querySnapshot: firestore.QuerySnapshot<firestore.DocumentData>
-    ): void {
+    setReports(querySnapshot: QuerySnapshot<DocumentData>): void {
       const documents = querySnapshot.docs.map((doc) =>
         Object.assign({ id: doc.id }, { ...doc.data() })
       )
