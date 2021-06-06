@@ -92,7 +92,6 @@ export default Vue.extend({
     searchReportsModal,
     loading,
     report,
-    styledButton,
   },
   mounted() {
     window.addEventListener('scroll', this.handleScroll)
@@ -224,14 +223,6 @@ export default Vue.extend({
         this.fetch()
       }
     },
-    logout(): void {
-      firebase
-        .auth()
-        .signOut()
-        .then(() => {
-          this.$router.push('/login')
-        })
-    },
   },
 })
 </script>
@@ -272,10 +263,6 @@ export default Vue.extend({
   float: left;
   width: 50%;
   margin-top: 12px;
-}
-
-.column-last {
-  margin-bottom: 100px;
 }
 
 .report-left {

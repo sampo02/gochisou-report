@@ -24,7 +24,7 @@
 </template>
 
 <script lang="ts">
-import Vue, { PropType } from 'vue'
+import Vue from 'vue'
 import styledButton from '@/components/atoms/styled-button.vue'
 
 interface SearchReportsModalData {
@@ -92,7 +92,6 @@ form {
   padding: 4px 12px;
   background-color: #e6e0d9;
   outline-width: 0;
-  border-style: solid;
   border: none;
 }
 

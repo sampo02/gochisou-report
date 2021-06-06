@@ -91,15 +91,10 @@ export default Vue.extend({
     close(): void {
       this.$emit('close')
     },
-    setImageUrl(): void {
-      this.report.imageUrl.then((url: string) => {
-        this.imageUrl = url
-      })
-    },
     date(): string {
       return moment(new Date()).format('YYYY/MM/DD')
     },
-    onSubmit(e: any): void {
+    onSubmit(_: any): void {
       const updatedReport: UpdatedReport = {
         id: this.id,
         title: this.title,
