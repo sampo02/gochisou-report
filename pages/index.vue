@@ -62,7 +62,6 @@ import editReportModal from '@/components/edit-report-modal.vue'
 import searchReportsModal from '@/components/search-reports-modal.vue'
 import loading from '@/components/atoms/loading.vue'
 import report from '@/components/report.vue'
-import styledButton from '@/components/atoms/styled-button.vue'
 import VModal from 'vue-js-modal'
 
 Vue.use(VModal, { dynamic: true, dynamicDefaults: { clickToClose: false } })
