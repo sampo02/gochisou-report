@@ -2,15 +2,15 @@ name: Lint
 on:
   push:
 jobs:
-  lint:
+  check:
+    name: Check
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
         with:
           node-version: 16.0.0
-      - name: Check
+      - name: Run
         run: |
           yarn
-          yarn run prettier -c .
-          yarn run eslint --max-warnings 0 .
+          yarn run lint:check
