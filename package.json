@@ -8,7 +8,9 @@
     "dev": "nuxt",
     "build": "nuxt build",
     "start": "nuxt start",
-    "generate": "nuxt generate"
+    "generate": "nuxt generate",
+    "lint:check": "yarn run prettier -c . && yarn run eslint --max-warnings 0 .",
+    "lint:fix": "yarn run prettier --write . && yarn run eslint . --quiet --fix"
   },
   "dependencies": {
     "@nuxtjs/firebase": "^7.6.1",
