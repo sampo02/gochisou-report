@@ -1,6 +1,6 @@
 ![Vercel](https://vercelbadge.vercel.app/api/sampo02/gochisou-report)
 [![CodeQL](https://github.com/sampo02/gochisou-report/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/sampo02/gochisou-report/actions/workflows/codeql-analysis.yml)
-[![lint](https://github.com/sampo02/gochisou-report/actions/workflows/lint.yml/badge.svg)](https://github.com/sampo02/gochisou-report/actions/workflows/lint.yml)
+[![Lint](https://github.com/sampo02/gochisou-report/actions/workflows/lint.yml/badge.svg)](https://github.com/sampo02/gochisou-report/actions/workflows/lint.yml)
 
 # gochisou-report
 
