@@ -44,7 +44,7 @@ export default {
   /*
    ** Nuxt.js dev-modules
    */
-  buildModules: ['@nuxt/typescript-build'],
+  buildModules: ['@nuxtjs/composition-api/module', '@nuxt/typescript-build'],
   /*
    ** Nuxt.js modules
    */
@@ -78,5 +78,11 @@ export default {
      ** You can extend webpack config here
      */
     extend(config, ctx) {},
+    babel: {
+      presets: ['@nuxt/babel-preset-app', 'vca-jsx'],
+    },
+  },
+  generate: {
+    interval: 2000,
   },
 }
