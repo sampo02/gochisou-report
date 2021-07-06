@@ -30,7 +30,7 @@
     "@typescript-eslint/parser": "^4.28.1",
     "babel-preset-vca-jsx": "^0.3.6",
     "eslint": "^7.29.0",
-    "eslint-plugin-vue": "^7.12.1",
+    "eslint-plugin-vue": "^7.13.0",
     "prettier": "2.3.2"
   }
 }
