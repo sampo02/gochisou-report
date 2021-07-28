@@ -24,7 +24,7 @@
   "devDependencies": {
     "@nuxt/types": "^2.15.7",
     "@nuxt/typescript-build": "^2.0.3",
-    "@nuxtjs/composition-api": "^0.25.2",
+    "@nuxtjs/composition-api": "^0.26.0",
     "@types/uuid": "^8.3.0",
     "@typescript-eslint/eslint-plugin": "^4.28.5",
     "@typescript-eslint/parser": "^4.28.5",
