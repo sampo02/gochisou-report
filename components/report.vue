@@ -93,12 +93,13 @@ p {
 }
 
 .title {
+  color: #685f56;
   font-size: 0.9rem;
   font-weight: bold;
-  color: #685f56;
-  white-space: nowrap;
+  height: 21px;
   overflow: hidden;
   text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .date {
