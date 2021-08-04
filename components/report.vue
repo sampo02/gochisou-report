@@ -56,6 +56,7 @@ export default Vue.extend({
 
 <style scoped>
 .report {
+  height: 236px;
   position: relative;
 }
 .icon {
@@ -96,7 +97,6 @@ p {
   color: #685f56;
   font-size: 0.9rem;
   font-weight: bold;
-  height: 21px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
