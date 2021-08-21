@@ -6,7 +6,7 @@
   "private": true,
   "scripts": {
     "dev": "nuxt",
-    "build": "nuxt build",
+    "build": "nuxt build --output public",
     "start": "nuxt start",
     "generate": "nuxt generate",
     "lint:check": "yarn run prettier -c . && yarn run eslint --max-warnings 0 .",
@@ -17,7 +17,7 @@
     "@nuxtjs/pwa": "^3.0.2",
     "firebase": "^8.9.1",
     "moment": "^2.29.0",
-    "nuxt": "^2.15.7",
+    "nuxt": "^2.15.8",
     "uuid": "^8.3.1",
     "vue-js-modal": "^2.0.1"
   },
