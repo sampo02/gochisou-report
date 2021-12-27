@@ -50,10 +50,9 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import firebase from 'firebase/app'
-import 'firebase/firestore'
+import firebase from 'firebase/compat/app'
 import moment from 'moment'
-import { NewReport, Report } from '@/types'
+import { NewReport } from '@/types'
 import styledButton from '@/components/atoms/styled-button.vue'
 import { v4 as uuidv4 } from 'uuid'
 

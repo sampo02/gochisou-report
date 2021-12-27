@@ -47,14 +47,24 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import firebase from 'firebase/app'
-import 'firebase/storage'
-import { db } from '@/plugins/db'
+import 'firebase/compat/firestore'
 import {
   DocumentData,
   QueryDocumentSnapshot,
   QuerySnapshot,
-} from '@firebase/firestore-types'
+  addDoc,
+  collection,
+  doc,
+  getDocs,
+  getFirestore,
+  limit,
+  orderBy,
+  query,
+  startAfter,
+  updateDoc,
+  where,
+} from 'firebase/firestore'
+import 'firebase/storage'
 import { NewReport, Report, UpdatedReport } from '@/types'
 import addReport from '@/components/add-report.vue'
 import addReportModal from '@/components/add-report-modal.vue'
@@ -63,6 +73,7 @@ import searchReportsModal from '@/components/search-reports-modal.vue'
 import loading from '@/components/atoms/loading.vue'
 import report from '@/components/report.vue'
 import VModal from 'vue-js-modal'
+import firebase from 'firebase/compat'
 
 Vue.use(VModal, { dynamic: true, dynamicDefaults: { clickToClose: false } })
 
@@ -102,27 +113,27 @@ export default Vue.extend({
     window.removeEventListener('scroll', this.handleScroll)
   },
   methods: {
-    fetch(): void {
+    async fetch(): Promise<void> {
       this.loading = true
       if (this.lastVisibleReport === null) {
-        db.collection('reports')
-          .orderBy('createdAt', 'desc')
-          .limit(20)
-          .get()
-          .then((querySnapshot) => {
-            this.setReports(querySnapshot)
-            this.loading = false
-          })
+        const reportsRef = collection(getFirestore(), 'reports')
+        const q = query(reportsRef, orderBy('createdAt', 'desc'), limit(20))
+        const querySnapshot = await getDocs(q)
+
+        this.setReports(querySnapshot)
+        this.loading = false
       } else if (this.lastVisibleReport !== undefined) {
-        db.collection('reports')
-          .orderBy('createdAt', 'desc')
-          .startAfter(this.lastVisibleReport)
-          .limit(20)
-          .get()
-          .then((querySnapshot) => {
-            this.setReports(querySnapshot)
-            this.loading = false
-          })
+        const reportsRef = collection(getFirestore(), 'reports')
+        const q = query(
+          reportsRef,
+          orderBy('createdAt', 'desc'),
+          startAfter(this.lastVisibleReport),
+          limit(20)
+        )
+        const querySnapshot = await getDocs(q)
+
+        this.setReports(querySnapshot)
+        this.loading = false
       }
     },
     setReports(querySnapshot: QuerySnapshot<DocumentData>): void {
@@ -148,7 +159,7 @@ export default Vue.extend({
       this.$modal.hide('add-report')
     },
     async createReport(newReport: NewReport): Promise<void> {
-      await db.collection('reports').add({
+      await addDoc(collection(getFirestore(), 'reports'), {
         imageFileName: newReport.imageFileName,
         title: newReport.title,
         url: newReport.url,
@@ -160,7 +171,7 @@ export default Vue.extend({
       await imageRef.put(newReport.imageFile)
       this.lastVisibleReport = null
       this.reports = []
-      this.fetch()
+      await this.fetch()
       this.$modal.hide('add-report')
     },
     showEditReportModal(report: Report): void {
@@ -170,20 +181,17 @@ export default Vue.extend({
     hideEditReportModal(): void {
       this.$modal.hide('edit-report')
     },
-    updateReport(updatedReport: UpdatedReport): void {
-      db.collection('reports')
-        .doc(updatedReport.id)
-        .update({
-          title: updatedReport.title,
-          url: updatedReport.url,
-          tags: updatedReport.tags,
-        })
-        .then(() => {
-          this.lastVisibleReport = null
-          this.reports = []
-          this.fetch()
-          this.$modal.hide('edit-report')
-        })
+    async updateReport(updatedReport: UpdatedReport): Promise<void> {
+      const reportRef = doc(getFirestore(), 'reports', updatedReport.id)
+      await updateDoc(reportRef, {
+        title: updatedReport.title,
+        url: updatedReport.url,
+        tags: updatedReport.tags,
+      })
+      this.lastVisibleReport = null
+      this.reports = []
+      await this.fetch()
+      this.$modal.hide('edit-report')
     },
     showSearchReportsModal(report: Report): void {
       this.$modal.show('search-reports')
@@ -191,24 +199,27 @@ export default Vue.extend({
     hideSearchReportsModal(): void {
       this.$modal.hide('search-reports')
     },
-    searchReports(searchQuery: string): void {
+    async searchReports(searchQuery: string): Promise<void> {
       this.showingSearchedReports = true
       this.loading = true
       this.reports = []
       if (searchQuery.length === 0) {
         this.lastVisibleReport = null
         this.showingSearchedReports = false
-        this.fetch()
+        await this.fetch()
       } else {
-        db.collection('reports')
-          .where('tags', 'array-contains-any', [searchQuery])
-          .orderBy('createdAt', 'desc')
-          .get()
-          .then((querySnapshot) => {
-            this.lastVisibleReport = null
-            this.setReports(querySnapshot)
-            this.loading = false
-          })
+        const reportsRef = collection(getFirestore(), 'reports')
+        const q = query(
+          reportsRef,
+          orderBy('createdAt', 'desc'),
+          where('tags', 'array-contains-any', [searchQuery]),
+          limit(20)
+        )
+        const querySnapshot = await getDocs(q)
+
+        this.lastVisibleReport = null
+        this.setReports(querySnapshot)
+        this.loading = false
       }
     },
     handleScroll() {

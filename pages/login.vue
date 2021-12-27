@@ -18,8 +18,8 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import firebase from 'firebase/app'
-import 'firebase/auth'
+import firebase from 'firebase/compat/app'
+import 'firebase/compat/auth'
 import loading from '@/components/atoms/loading.vue'
 import styledButton from '@/components/atoms/styled-button.vue'
 

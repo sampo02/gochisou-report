@@ -1,4 +1,5 @@
-import { Timestamp } from '@firebase/firestore-types'
+import firebase from 'firebase/compat'
+import Timestamp = firebase.firestore.Timestamp
 
 export interface Report {
   id: string
