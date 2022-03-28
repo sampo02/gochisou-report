@@ -2,6 +2,7 @@ import { defineNuxtConfig } from '@nuxt/bridge'
 
 export default defineNuxtConfig({
   ssr: false,
+  target: 'static',
   /*
    ** Headers of the page
    */
@@ -84,5 +85,8 @@ export default defineNuxtConfig({
   },
   alias: {
     tslib: 'tslib/tslib.es6.js',
+  },
+  bridge: {
+    nitro: false,
   },
 })
