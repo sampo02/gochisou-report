@@ -28,6 +28,7 @@ interface LoginData {
 }
 
 export default Vue.extend({
+  name: 'LoginPage',
   data(): LoginData {
     return {
       isLoading: false,

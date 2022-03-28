@@ -1,4 +1,6 @@
-export default {
+import { defineNuxtConfig } from '@nuxt/bridge'
+
+export default defineNuxtConfig({
   ssr: false,
   /*
    ** Headers of the page
@@ -44,7 +46,7 @@ export default {
   /*
    ** Nuxt.js dev-modules
    */
-  buildModules: ['@nuxtjs/composition-api/module', '@nuxt/typescript-build'],
+  buildModules: [],
   /*
    ** Nuxt.js modules
    */
@@ -79,12 +81,8 @@ export default {
     /*
      ** You can extend webpack config here
      */
-    extend(config, ctx) {},
-    babel: {
-      presets: ['@nuxt/babel-preset-app', 'vca-jsx'],
-    },
   },
-  generate: {
-    interval: 2000,
+  alias: {
+    tslib: 'tslib/tslib.es6.js',
   },
-}
+})
