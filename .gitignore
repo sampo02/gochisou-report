@@ -88,3 +88,4 @@ sw.*
 
 .vercel
 .env
+.output
