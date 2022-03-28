@@ -86,6 +86,7 @@ export type IndexData = {
 }
 
 export default Vue.extend({
+  name: 'IndexPage',
   data(): IndexData {
     return {
       activeReport: null,

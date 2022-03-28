@@ -30,6 +30,7 @@ export type ReportData = {
 }
 
 export default Vue.extend({
+  name: 'ReportComponent',
   data(): ReportData {
     return {
       imageUrl: '',
