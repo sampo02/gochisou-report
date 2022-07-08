@@ -15,7 +15,7 @@
   "dependencies": {
     "@nuxtjs/firebase": "^8.2.2",
     "@nuxtjs/pwa": "^3.0.2",
-    "firebase": "^9.8.4",
+    "firebase": "^9.9.0",
     "moment": "^2.29.4",
     "nuxt-edge": "latest",
     "uuid": "^8.3.1",
