@@ -27,7 +27,7 @@
     "@nuxt/typescript-build": "^2.1.0",
     "@types/uuid": "^8.3.4",
     "@typescript-eslint/eslint-plugin": "^5.30.5",
-    "@typescript-eslint/parser": "^5.30.5",
+    "@typescript-eslint/parser": "^5.30.6",
     "eslint": "^8.19.0",
     "eslint-plugin-vue": "^9.2.0",
     "prettier": "2.7.1"
