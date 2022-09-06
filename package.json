@@ -18,7 +18,7 @@
     "firebase": "^9.9.4",
     "moment": "^2.29.4",
     "nuxt-edge": "latest",
-    "uuid": "^8.3.1",
+    "uuid": "^9.0.0",
     "vue-js-modal": "^2.0.1"
   },
   "devDependencies": {
