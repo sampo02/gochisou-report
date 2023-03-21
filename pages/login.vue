@@ -54,7 +54,7 @@ export default Vue.extend({
       window.location.hash = 'redirecting'
 
       const provider = new firebase.auth.GoogleAuthProvider()
-      firebase.auth().signInWithRedirect(provider)
+      firebase.auth().signInWithPopup(provider)
     },
   },
 })
