@@ -213,8 +213,7 @@ export default Vue.extend({
         const q = query(
           reportsRef,
           orderBy('createdAt', 'desc'),
-          where('tags', 'array-contains-any', [searchQuery]),
-          limit(20)
+          where('tags', 'array-contains-any', [searchQuery])
         )
         const querySnapshot = await getDocs(q)
 
