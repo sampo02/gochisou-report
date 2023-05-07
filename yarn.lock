@@ -8543,6 +8543,13 @@ nth-check@^2.0.1:
   dependencies:
     boolbase "^1.0.0"
 
+nuxi@3.0.0-rc.8:
+  version "3.0.0-rc.8"
+  resolved "https://registry.yarnpkg.com/nuxi/-/nuxi-3.0.0-rc.8.tgz#d4995d0e6c546a851877fcf747a38d214df4c8cd"
+  integrity sha512-2zAuRQnTUFPvway0sNinuQ9x4h+cDrOaWRCRCHYOZq1uSqco5G0wSiI/TzDsQfSMZjCU44wVAzSMJceTozoggQ==
+  optionalDependencies:
+    fsevents "~2.3.2"
+
 nuxi@3.4.3:
   version "3.4.3"
   resolved "https://registry.yarnpkg.com/nuxi/-/nuxi-3.4.3.tgz#06833bab32b494f92d913917246ad27192192613"
