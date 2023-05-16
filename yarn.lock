@@ -8584,6 +8584,13 @@ nuxi@3.4.3:
   optionalDependencies:
     fsevents "~2.3.2"
 
+nuxi@3.5.0:
+  version "3.5.0"
+  resolved "https://registry.yarnpkg.com/nuxi/-/nuxi-3.5.0.tgz#26b29137547289f72687d98410c98b0a6de6cb57"
+  integrity sha512-PQ2dhnKZBpnSbHx5pW/21nA9/X9T4P0mIStqWRX3/3qUnFwELp9DAQq4e14kwaXY6mkSohpplPr1kaasgGB2ZA==
+  optionalDependencies:
+    fsevents "~2.3.2"
+
 nuxt-edge@latest:
   version "2.17.0-28038258.3bfbcde"
   resolved "https://registry.yarnpkg.com/nuxt-edge/-/nuxt-edge-2.17.0-28038258.3bfbcde.tgz#6f4e1b2a7448a7450cb32bd0d78ac1dcb61f7ee1"
