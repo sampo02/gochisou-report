@@ -2354,7 +2354,7 @@
     node-html-parser "^6.1.5"
     ufo "^1.1.1"
 
-"@nuxt/kit@3.4.3", "@nuxt/kit@^3.4.3":
+"@nuxt/kit@3.4.3":
   version "3.4.3"
   resolved "https://registry.yarnpkg.com/@nuxt/kit/-/kit-3.4.3.tgz#2ab6efb0a4db7b4e5f4d8d7d7e696fa30a6e8771"
   integrity sha512-aQyzplYFCL292UsVZzlOZOC51ZKYFL0PBihbcPzxTzXQvAfMF8/DQ539kqzqXzxTCcmnUB9ROhIaNUrAeUkFYA==
@@ -2374,6 +2374,30 @@
     pkg-types "^1.0.2"
     scule "^1.0.0"
     semver "^7.5.0"
+    unctx "^2.3.0"
+    unimport "^3.0.6"
+    untyped "^1.3.2"
+
+"@nuxt/kit@^3.5.0":
+  version "3.5.0"
+  resolved "https://registry.yarnpkg.com/@nuxt/kit/-/kit-3.5.0.tgz#ae8d8a64936714b3603230a2861539f95dbd218e"
+  integrity sha512-QqhOPTan5cpaYCksSWdmtpldCGfnsqTd55blztMSF+OPxfGav4GE4BrBD3ZSMn2/5MxieF3GU/w5/tgcDXE3bA==
+  dependencies:
+    "@nuxt/schema" "3.5.0"
+    c12 "^1.4.1"
+    consola "^3.1.0"
+    defu "^6.1.2"
+    globby "^13.1.4"
+    hash-sum "^2.0.0"
+    ignore "^5.2.4"
+    jiti "^1.18.2"
+    knitwork "^1.0.0"
+    lodash.template "^4.5.0"
+    mlly "^1.2.1"
+    pathe "^1.1.0"
+    pkg-types "^1.0.3"
+    scule "^1.0.0"
+    semver "^7.5.1"
     unctx "^2.3.0"
     unimport "^3.0.6"
     untyped "^1.3.2"
@@ -2424,6 +2448,21 @@
     postcss-import-resolver "^2.0.0"
     std-env "^3.3.2"
     ufo "^1.1.1"
+    unimport "^3.0.6"
+    untyped "^1.3.2"
+
+"@nuxt/schema@3.5.0":
+  version "3.5.0"
+  resolved "https://registry.yarnpkg.com/@nuxt/schema/-/schema-3.5.0.tgz#53ec59ea85c30813dc692fc5a6d0075eedc9dce6"
+  integrity sha512-zz7S5RTCTGSCAyfNxO0R+TYvgk7WQdHUWJiAiTFQ+iFtqQkb/re1I86Ba9VKTJjZmm3fUI5kT5Y62emJcOLlXw==
+  dependencies:
+    defu "^6.1.2"
+    hookable "^5.5.3"
+    pathe "^1.1.0"
+    pkg-types "^1.0.3"
+    postcss-import-resolver "^2.0.0"
+    std-env "^3.3.3"
+    ufo "^1.1.2"
     unimport "^3.0.6"
     untyped "^1.3.2"
 
@@ -2764,15 +2803,15 @@
     serve-static "^1.14.1"
     workbox-cdn "^5.1.4"
 
-"@nuxtjs/web-vitals@^0.2.5":
-  version "0.2.5"
-  resolved "https://registry.yarnpkg.com/@nuxtjs/web-vitals/-/web-vitals-0.2.5.tgz#2daaa9edbb023af4fd96d12e483183c67152aaa0"
-  integrity sha512-A2AeO7RpzARxQ3lBf3U8UMPDaM8Y4TIBDDMUZ5IeYJazWHIJe+5Mw9fhdvE2VrOUY+zNmEDAEKkc3YujKc7rcg==
+"@nuxtjs/web-vitals@^0.2.6":
+  version "0.2.6"
+  resolved "https://registry.yarnpkg.com/@nuxtjs/web-vitals/-/web-vitals-0.2.6.tgz#a7e35680db509d1e65b5813ab5d1d88ec0c0ba40"
+  integrity sha512-hoLo/Lcl63rDEm1gR/VN3sSG7mO4UKzJF69lyKjm+cSWtnSinSQo4n/8V0qmDqVgC3GPfvC1X/IqZx5FaRSS/g==
   dependencies:
-    "@nuxt/kit" "^3.4.3"
+    "@nuxt/kit" "^3.5.0"
     defu "^6.1.2"
     pathe "^1.1.0"
-    ufo "^1.1.1"
+    ufo "^1.1.2"
     web-vitals "^3.3.1"
 
 "@nuxtjs/youch@^4.2.3":
@@ -8203,6 +8242,16 @@ mlly@^1.0.0, mlly@^1.2.0:
     pathe "^1.1.0"
     pkg-types "^1.0.2"
     ufo "^1.1.1"
+
+mlly@^1.2.1:
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/mlly/-/mlly-1.2.1.tgz#cd50151f5712b651c5c379085157bcdff661133b"
+  integrity sha512-1aMEByaWgBPEbWV2BOPEMySRrzl7rIHXmQxam4DM8jVjalTQDjpN2ZKOLUrwyhfZQO7IXHml2StcHMhooDeEEQ==
+  dependencies:
+    acorn "^8.8.2"
+    pathe "^1.1.0"
+    pkg-types "^1.0.3"
+    ufo "^1.1.2"
 
 moment@^2.29.4:
   version "2.29.4"
