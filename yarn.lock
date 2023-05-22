@@ -988,6 +988,11 @@
   resolved "https://registry.yarnpkg.com/@csstools/color-helpers/-/color-helpers-2.0.0.tgz#4ac578cb00b4e853b94f2250267d85ba957c4fc9"
   integrity sha512-VcPjEnp07RNgz/D+oI2uIALg+IPCSl6mj0XhA3pl3F2bM2B95vgzatExmmzSg/X0zkh+R2v+jFY/J2pV/bnwpw==
 
+"@csstools/color-helpers@^2.1.0":
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/@csstools/color-helpers/-/color-helpers-2.1.0.tgz#b27d8376e9e8a947878f10967481c22bf046976a"
+  integrity sha512-OWkqBa7PDzZuJ3Ha7T5bxdSVfSCfTq6K1mbAhbO1MD+GSULGjrp45i5RudyJOedstSarN/3mdwu9upJE7gDXfw==
+
 "@csstools/css-calc@^1.1.1":
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/@csstools/css-calc/-/css-calc-1.1.1.tgz#c622728b7f0c9aae70952623c2b0d3d114752987"
@@ -999,6 +1004,14 @@
   integrity sha512-MjW/VspbFSkvbuou7tUUu2+FAlAR7VJ/PA69M9EGKltThbONC8nyW33wHRzNvLzRLGstZLEO5X5oR7IMhMDi0A==
   dependencies:
     "@csstools/color-helpers" "^2.0.0"
+    "@csstools/css-calc" "^1.1.1"
+
+"@csstools/css-color-parser@^1.2.0":
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/@csstools/css-color-parser/-/css-color-parser-1.2.0.tgz#30243b2fe912e1da0787e7d093d25a9ed40a73b5"
+  integrity sha512-kt9jhqyL/Ig/Tsf1cY+iygxs2nu3/D532048G9BSeg9YjlpZxbor6I+nvgMNB1A1ppL+i15Mb/yyDHYMQmgBtQ==
+  dependencies:
+    "@csstools/color-helpers" "^2.1.0"
     "@csstools/css-calc" "^1.1.1"
 
 "@csstools/css-parser-algorithms@^2.1.1":
@@ -1034,6 +1047,16 @@
     "@csstools/css-tokenizer" "^2.1.1"
     "@csstools/postcss-progressive-custom-properties" "^2.0.0"
 
+"@csstools/postcss-color-function@^2.2.2":
+  version "2.2.2"
+  resolved "https://registry.yarnpkg.com/@csstools/postcss-color-function/-/postcss-color-function-2.2.2.tgz#10bd96096b01ba58336c7eda90673f27a8b2df0c"
+  integrity sha512-HpBtNAS8m07Umr1kYYOIKTSg2uBMjWMc7zeXchhodsZtopICa5pTyCIuuT0z9oy07j/M4+Uj0M01OLvmN0AHqA==
+  dependencies:
+    "@csstools/css-color-parser" "^1.2.0"
+    "@csstools/css-parser-algorithms" "^2.1.1"
+    "@csstools/css-tokenizer" "^2.1.1"
+    "@csstools/postcss-progressive-custom-properties" "^2.2.0"
+
 "@csstools/postcss-color-mix-function@^1.0.1":
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/@csstools/postcss-color-mix-function/-/postcss-color-mix-function-1.0.1.tgz#587f7df69d40f84c7bb4e9d7f178266cb7f6851b"
@@ -1043,6 +1066,16 @@
     "@csstools/css-parser-algorithms" "^2.1.1"
     "@csstools/css-tokenizer" "^2.1.1"
     "@csstools/postcss-progressive-custom-properties" "^2.0.0"
+
+"@csstools/postcss-color-mix-function@^1.0.2":
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/@csstools/postcss-color-mix-function/-/postcss-color-mix-function-1.0.2.tgz#02e366b84cf84f4522b4d27053959614fbab0e22"
+  integrity sha512-SZRZ1osJo5CR89xojPEkORnH6RS0FK1aktMujo52TCc74oJCIf6udX1e22qTeV8YG78lRNx8NpM3WzI4dL94tQ==
+  dependencies:
+    "@csstools/css-color-parser" "^1.2.0"
+    "@csstools/css-parser-algorithms" "^2.1.1"
+    "@csstools/css-tokenizer" "^2.1.1"
+    "@csstools/postcss-progressive-custom-properties" "^2.2.0"
 
 "@csstools/postcss-font-format-keywords@^2.0.2":
   version "2.0.2"
@@ -1061,12 +1094,31 @@
     "@csstools/css-tokenizer" "^2.1.1"
     "@csstools/postcss-progressive-custom-properties" "^2.0.0"
 
+"@csstools/postcss-gradients-interpolation-method@^3.0.5":
+  version "3.0.5"
+  resolved "https://registry.yarnpkg.com/@csstools/postcss-gradients-interpolation-method/-/postcss-gradients-interpolation-method-3.0.5.tgz#7a066b10d42ef6048382ef38dc0a4c845fa9721f"
+  integrity sha512-x1tKUChKajjlZ+pOvapvHTXfRasXLBaChzwcKzI+wGsUmWIfIZhWVdksI/9Yeef0RhI9RFsEgr1fI3gWNcxHyg==
+  dependencies:
+    "@csstools/css-color-parser" "^1.2.0"
+    "@csstools/css-parser-algorithms" "^2.1.1"
+    "@csstools/css-tokenizer" "^2.1.1"
+    "@csstools/postcss-progressive-custom-properties" "^2.2.0"
+
 "@csstools/postcss-hwb-function@^2.2.1":
   version "2.2.1"
   resolved "https://registry.yarnpkg.com/@csstools/postcss-hwb-function/-/postcss-hwb-function-2.2.1.tgz#ab50918104e4ef500c42e55e4ccdd27fc33d52b9"
   integrity sha512-eiqB4DIs+xqProAly7KwIgE04oze1YHb0QSCw/Y7062d9gpw+Cdif3Y0Z+Te+U7JROYdO0/0j91A6Qy8fo/Rlw==
   dependencies:
     "@csstools/css-color-parser" "^1.1.2"
+    "@csstools/css-parser-algorithms" "^2.1.1"
+    "@csstools/css-tokenizer" "^2.1.1"
+
+"@csstools/postcss-hwb-function@^2.2.2":
+  version "2.2.2"
+  resolved "https://registry.yarnpkg.com/@csstools/postcss-hwb-function/-/postcss-hwb-function-2.2.2.tgz#c36a450bc98038df00bbbebcef20f04aac6e0b08"
+  integrity sha512-W5Y5oaJ382HSlbdGfPf60d7dAK6Hqf10+Be1yZbd/TNNrQ/3dDdV1c07YwOXPQ3PZ6dvFMhxbIbn8EC3ki3nEg==
+  dependencies:
+    "@csstools/css-color-parser" "^1.2.0"
     "@csstools/css-parser-algorithms" "^2.1.1"
     "@csstools/css-tokenizer" "^2.1.1"
 
@@ -1078,10 +1130,26 @@
     "@csstools/postcss-progressive-custom-properties" "^2.0.0"
     postcss-value-parser "^4.2.0"
 
+"@csstools/postcss-ic-unit@^2.0.3":
+  version "2.0.3"
+  resolved "https://registry.yarnpkg.com/@csstools/postcss-ic-unit/-/postcss-ic-unit-2.0.3.tgz#21b3adea10aedd51181285f3e1225598d602e1e2"
+  integrity sha512-azDezOeI7IhLGqRauyfi/JuJOfNHM951h0TZWnL9L38xTmlBK+s7y4MpWXTq/Ohz8IuiIuVPobXTewsqXaTeiQ==
+  dependencies:
+    "@csstools/postcss-progressive-custom-properties" "^2.2.0"
+    postcss-value-parser "^4.2.0"
+
 "@csstools/postcss-is-pseudo-class@^3.2.0":
   version "3.2.0"
   resolved "https://registry.yarnpkg.com/@csstools/postcss-is-pseudo-class/-/postcss-is-pseudo-class-3.2.0.tgz#1277cc187bdb075013341dab42b4140d1cafae27"
   integrity sha512-uooelBL99jMg8ZD6xy0Pj1hSalchWmplcin00eI+JHpv1jW2iwbi1cn2UnVsToM4JLwJSZFzTSWCgSpmlyhe3A==
+  dependencies:
+    "@csstools/selector-specificity" "^2.0.0"
+    postcss-selector-parser "^6.0.10"
+
+"@csstools/postcss-is-pseudo-class@^3.2.1":
+  version "3.2.1"
+  resolved "https://registry.yarnpkg.com/@csstools/postcss-is-pseudo-class/-/postcss-is-pseudo-class-3.2.1.tgz#610f451b9293307d83d484c84af332a05e48b661"
+  integrity sha512-AtANdV34kJl04Al62is3eQRk/BfOfyAvEmRJvbt+nx5REqImLC+2XhuE6skgkcPli1l8ONS67wS+l1sBzySc3Q==
   dependencies:
     "@csstools/selector-specificity" "^2.0.0"
     postcss-selector-parser "^6.0.10"
@@ -1148,12 +1216,39 @@
     "@csstools/css-tokenizer" "^2.1.1"
     "@csstools/postcss-progressive-custom-properties" "^2.0.0"
 
+"@csstools/postcss-oklab-function@^2.2.2":
+  version "2.2.2"
+  resolved "https://registry.yarnpkg.com/@csstools/postcss-oklab-function/-/postcss-oklab-function-2.2.2.tgz#a002b05980050f9307b3482cff6925081591a2cf"
+  integrity sha512-25Y9GYia9QamEOHx3B8hyHftDo/lzVhmPPm96ziOzOri9MDZvphPYPyx8NxQXh0P1P0j92eJcOjw4AO6HcXWYw==
+  dependencies:
+    "@csstools/css-color-parser" "^1.2.0"
+    "@csstools/css-parser-algorithms" "^2.1.1"
+    "@csstools/css-tokenizer" "^2.1.1"
+    "@csstools/postcss-progressive-custom-properties" "^2.2.0"
+
 "@csstools/postcss-progressive-custom-properties@^2.0.0", "@csstools/postcss-progressive-custom-properties@^2.1.0":
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/@csstools/postcss-progressive-custom-properties/-/postcss-progressive-custom-properties-2.1.1.tgz#82df9314451db63bf7f4975a4d32f148e85db490"
   integrity sha512-6p8eO5+j+9hn4h2Klr9dbmya0GIb9SRrnPaCxqR1muVlV1waAZq6YkmlApEwXrox9qxggSwGZD5TnLRIY9f7WA==
   dependencies:
     postcss-value-parser "^4.2.0"
+
+"@csstools/postcss-progressive-custom-properties@^2.2.0":
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/@csstools/postcss-progressive-custom-properties/-/postcss-progressive-custom-properties-2.2.0.tgz#69e9b28282d5f72dbbc82b5ccdf69b20e30c99fe"
+  integrity sha512-qtJ2Jgf5bQW65OK7JaR0dw+XL3tc3BN99g+I5cRdik++HpyZitrKKxIwDGb3OHp2Yo3PZKuiX8pXljqmLHT/eg==
+  dependencies:
+    postcss-value-parser "^4.2.0"
+
+"@csstools/postcss-relative-color-syntax@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@csstools/postcss-relative-color-syntax/-/postcss-relative-color-syntax-1.0.0.tgz#104c1f7c549781334d408bdba93baf4f7288bc1b"
+  integrity sha512-/Q2xOHjOeq8p8j/+yilJlroWzqbBca3+tux2ikkArsAsQS9sHWbFtPz602EpNnoGSnVg7o/QSf3xxaekyzv/8A==
+  dependencies:
+    "@csstools/css-color-parser" "^1.2.0"
+    "@csstools/css-parser-algorithms" "^2.1.1"
+    "@csstools/css-tokenizer" "^2.1.1"
+    "@csstools/postcss-progressive-custom-properties" "^2.2.0"
 
 "@csstools/postcss-scope-pseudo-class@^2.0.2":
   version "2.0.2"
@@ -1177,6 +1272,14 @@
   integrity sha512-PADJidg/tdhDk120aWlGuDxsp5ZTc9Nx7GhJ8t0qBCk5fOgLK6V3DsB9X6sOAhDokIihXKzjtUu15puac5McWw==
   dependencies:
     "@csstools/color-helpers" "^2.0.0"
+    postcss-value-parser "^4.2.0"
+
+"@csstools/postcss-text-decoration-shorthand@^2.2.4":
+  version "2.2.4"
+  resolved "https://registry.yarnpkg.com/@csstools/postcss-text-decoration-shorthand/-/postcss-text-decoration-shorthand-2.2.4.tgz#184af1d68f4d97c381fad2ca58ae7f3f2a5dd7c3"
+  integrity sha512-zPN56sQkS/7YTCVZhOBVCWf7AiNge8fXDl7JVaHLz2RyT4pnyK2gFjckWRLpO0A2xkm1lCgZ0bepYZTwAVd/5A==
+  dependencies:
+    "@csstools/color-helpers" "^2.1.0"
     postcss-value-parser "^4.2.0"
 
 "@csstools/postcss-trigonometric-functions@^2.1.1":
@@ -2016,10 +2119,10 @@
     mkdirp "^1.0.4"
     rimraf "^3.0.2"
 
-"@nuxt/babel-preset-app-edge@2.17.0-28074262.3ac074c":
-  version "2.17.0-28074262.3ac074c"
-  resolved "https://registry.yarnpkg.com/@nuxt/babel-preset-app-edge/-/babel-preset-app-edge-2.17.0-28074262.3ac074c.tgz#f310eddad8ca86da391aa6365747e58a51303fac"
-  integrity sha512-rD4iqJQzy0r8XlfLLabu5rzSiEvKerAh61RU7NddBlpGnxx2vMAxQVZzijpLDLgb4jfdkGWSUlUurXnPWbpN+w==
+"@nuxt/babel-preset-app-edge@2.17.0-28078579.df5a69a":
+  version "2.17.0-28078579.df5a69a"
+  resolved "https://registry.yarnpkg.com/@nuxt/babel-preset-app-edge/-/babel-preset-app-edge-2.17.0-28078579.df5a69a.tgz#ff4439fc67d8280765f41327c60582b973431a7a"
+  integrity sha512-XiJcpHdUW8+Dfkz2zd3VEov4rDLnaTvg4gHUhzsAd7hJELA24LSBdWjjiNUKsPnf/XuS68iF3FuNLkE8fVsjOw==
   dependencies:
     "@babel/compat-data" "^7.21.7"
     "@babel/core" "^7.21.8"
@@ -2135,15 +2238,15 @@
     vite "~4.3.5"
     vue-bundle-renderer "^1.0.3"
 
-"@nuxt/builder-edge@2.17.0-28074262.3ac074c":
-  version "2.17.0-28074262.3ac074c"
-  resolved "https://registry.yarnpkg.com/@nuxt/builder-edge/-/builder-edge-2.17.0-28074262.3ac074c.tgz#4a66d6f20cd6f2a96e8727fd63588a2e0e6143a0"
-  integrity sha512-B1TLNMgVNXLkc1vo3x3+Hro2MfR8eqa6IGmeY/dAYgHAagc8XBs/yWvdGjVp5/0e3MzU7lJsa0uQ7aqJcBDfcQ==
+"@nuxt/builder-edge@2.17.0-28078579.df5a69a":
+  version "2.17.0-28078579.df5a69a"
+  resolved "https://registry.yarnpkg.com/@nuxt/builder-edge/-/builder-edge-2.17.0-28078579.df5a69a.tgz#cf67984f38cf01b57305dbe527da7e7247e97195"
+  integrity sha512-2duDsas6K5iqls5RtXhISBPr/nD1t4Fo/X8JR8w0fiyEne28gekkP/wZMYC2n9gbWf2IIQw8n/7sIMCO9P+PMg==
   dependencies:
     "@nuxt/devalue" "^2.0.2"
-    "@nuxt/utils-edge" "2.17.0-28074262.3ac074c"
-    "@nuxt/vue-app-edge" "2.17.0-28074262.3ac074c"
-    "@nuxt/webpack-edge" "2.17.0-28074262.3ac074c"
+    "@nuxt/utils-edge" "2.17.0-28078579.df5a69a"
+    "@nuxt/vue-app-edge" "2.17.0-28078579.df5a69a"
+    "@nuxt/webpack-edge" "2.17.0-28078579.df5a69a"
     chalk "^4.1.2"
     chokidar "^3.5.3"
     consola "^3.1.0"
@@ -2177,13 +2280,13 @@
     serialize-javascript "^6.0.1"
     upath "^2.0.1"
 
-"@nuxt/cli-edge@2.17.0-28074262.3ac074c":
-  version "2.17.0-28074262.3ac074c"
-  resolved "https://registry.yarnpkg.com/@nuxt/cli-edge/-/cli-edge-2.17.0-28074262.3ac074c.tgz#3ab733d7e2ad14c405908e040182501071f7e134"
-  integrity sha512-aIV7vf9bu3EZBSnWM7iB6aGaMty/zEyLmeOlO2CYO3UU0K/0VJtc4TJoI9fSWPqWI9exKkFBTR53LvcWqFGXBA==
+"@nuxt/cli-edge@2.17.0-28078579.df5a69a":
+  version "2.17.0-28078579.df5a69a"
+  resolved "https://registry.yarnpkg.com/@nuxt/cli-edge/-/cli-edge-2.17.0-28078579.df5a69a.tgz#68ad3e59cb71e9ecfe023ec961ee40ea328ba2c7"
+  integrity sha512-KUrKmK61A2b9fblZ48ZPZrib1To/AKO2gRsf/+VNVZewm4q783iBvGAnmgobgJepwdlm4cgQs+3M0HxjEgSENg==
   dependencies:
-    "@nuxt/config-edge" "2.17.0-28074262.3ac074c"
-    "@nuxt/utils-edge" "2.17.0-28074262.3ac074c"
+    "@nuxt/config-edge" "2.17.0-28078579.df5a69a"
+    "@nuxt/utils-edge" "2.17.0-28078579.df5a69a"
     boxen "^5.1.2"
     chalk "^4.1.2"
     compression "^1.7.4"
@@ -2251,12 +2354,12 @@
     upath "^2.0.1"
     vue-template-compiler "^2.6.14"
 
-"@nuxt/config-edge@2.17.0-28074262.3ac074c":
-  version "2.17.0-28074262.3ac074c"
-  resolved "https://registry.yarnpkg.com/@nuxt/config-edge/-/config-edge-2.17.0-28074262.3ac074c.tgz#939c1232d15b432d187d8f81b1a81b025f981a65"
-  integrity sha512-WpxxhjsHzY7kI76HQA/DB9mXuN8GZ/pJvbkHJjB2zbFUC3su1Fewm38dDsMEWcfCA+lxxCs7QRFIRKjyhR65ig==
+"@nuxt/config-edge@2.17.0-28078579.df5a69a":
+  version "2.17.0-28078579.df5a69a"
+  resolved "https://registry.yarnpkg.com/@nuxt/config-edge/-/config-edge-2.17.0-28078579.df5a69a.tgz#db99a1d4d69e781414d825cf1e3fa3d793c7fdc9"
+  integrity sha512-KTC4nRbhYjEY8W5NhVnXkSrt3XdBO9yiH9dNjsMPaTfjhXg/W59+rocqt0L84F63yrMghGwndnmW7qLk+JhexQ==
   dependencies:
-    "@nuxt/utils-edge" "2.17.0-28074262.3ac074c"
+    "@nuxt/utils-edge" "2.17.0-28078579.df5a69a"
     consola "^3.1.0"
     defu "^6.1.2"
     destr "^1.2.2"
@@ -2281,14 +2384,14 @@
     std-env "^3.3.2"
     ufo "^1.1.1"
 
-"@nuxt/core-edge@2.17.0-28074262.3ac074c":
-  version "2.17.0-28074262.3ac074c"
-  resolved "https://registry.yarnpkg.com/@nuxt/core-edge/-/core-edge-2.17.0-28074262.3ac074c.tgz#d4c0417c5e7be152358ef3d3ac054e78ec70ddde"
-  integrity sha512-64U6lbNvMv3Rs0b9PiA3U35Luk0Jjw2HrixvfFTJirOEx8gNI1VcAg8PV5ZHXFgFmx/G2w0kyTyrvYGxrp9W9w==
+"@nuxt/core-edge@2.17.0-28078579.df5a69a":
+  version "2.17.0-28078579.df5a69a"
+  resolved "https://registry.yarnpkg.com/@nuxt/core-edge/-/core-edge-2.17.0-28078579.df5a69a.tgz#8fadb47fd59b050d2facfd136ca41a7828c60b08"
+  integrity sha512-RjzqLRHm6+96o5ok7x4yLM+KfpQybUz8/tY4+Ibh1ZMWLyLY86fSUgQ8OTynNOGHTj1b1DVHOgj1YciuEpksXQ==
   dependencies:
-    "@nuxt/config-edge" "2.17.0-28074262.3ac074c"
-    "@nuxt/server-edge" "2.17.0-28074262.3ac074c"
-    "@nuxt/utils-edge" "2.17.0-28074262.3ac074c"
+    "@nuxt/config-edge" "2.17.0-28078579.df5a69a"
+    "@nuxt/server-edge" "2.17.0-28078579.df5a69a"
+    "@nuxt/utils-edge" "2.17.0-28078579.df5a69a"
     consola "^3.1.0"
     fs-extra "^10.1.0"
     hable "^3.0.0"
@@ -2324,12 +2427,12 @@
     error-stack-parser "^2.0.0"
     string-width "^4.2.3"
 
-"@nuxt/generator-edge@2.17.0-28074262.3ac074c":
-  version "2.17.0-28074262.3ac074c"
-  resolved "https://registry.yarnpkg.com/@nuxt/generator-edge/-/generator-edge-2.17.0-28074262.3ac074c.tgz#d68e6ca86b2c5a66b8b02e64cf1fefbe0b17e914"
-  integrity sha512-wPCGALVohRwXl/qRce/Akh2ybzEEvniZZ/7pESRF0pG5/nr7Q/0Px+LTPV6RF/G7hwmOhm4TZHTvR50MtFB34Q==
+"@nuxt/generator-edge@2.17.0-28078579.df5a69a":
+  version "2.17.0-28078579.df5a69a"
+  resolved "https://registry.yarnpkg.com/@nuxt/generator-edge/-/generator-edge-2.17.0-28078579.df5a69a.tgz#f5b58fefd3275719dacbdf61143bbee242496bfa"
+  integrity sha512-kz47uZjLw3BDRZUEDyt7IgU1H/0ppFNT7r7PrjEfLYJSPsYGaWwUCaJfbpMw5MYEPovn1kt8nvfOxsQNPCY/JA==
   dependencies:
-    "@nuxt/utils-edge" "2.17.0-28074262.3ac074c"
+    "@nuxt/utils-edge" "2.17.0-28078579.df5a69a"
     chalk "^4.1.2"
     consola "^3.1.0"
     defu "^6.1.2"
@@ -2466,13 +2569,13 @@
     unimport "^3.0.6"
     untyped "^1.3.2"
 
-"@nuxt/server-edge@2.17.0-28074262.3ac074c":
-  version "2.17.0-28074262.3ac074c"
-  resolved "https://registry.yarnpkg.com/@nuxt/server-edge/-/server-edge-2.17.0-28074262.3ac074c.tgz#0a653a3222d019e7ecf42ed6db5e3ccda445c537"
-  integrity sha512-ZnAIFaZKxEz4DRXXtV12DfOSqFBuV6vO5+OnqmWRDWEb1+SHPCzSPETARDXv7X7It3F3zl80PGbvm75duPQ2Jg==
+"@nuxt/server-edge@2.17.0-28078579.df5a69a":
+  version "2.17.0-28078579.df5a69a"
+  resolved "https://registry.yarnpkg.com/@nuxt/server-edge/-/server-edge-2.17.0-28078579.df5a69a.tgz#11bf45915d28571a414d042113b3c8ff23ed5abc"
+  integrity sha512-1qJAtcGI43f4svVOgNiDx4varvfGPit322QYK3ZcGfDreGAJg9egQCsGth9za8iWoD+JxhpBawqiEI1kgKcEtg==
   dependencies:
-    "@nuxt/utils-edge" "2.17.0-28074262.3ac074c"
-    "@nuxt/vue-renderer-edge" "2.17.0-28074262.3ac074c"
+    "@nuxt/utils-edge" "2.17.0-28078579.df5a69a"
+    "@nuxt/vue-renderer-edge" "2.17.0-28078579.df5a69a"
     "@nuxtjs/youch" "^4.2.3"
     compression "^1.7.4"
     connect "^3.7.0"
@@ -2571,10 +2674,10 @@
   resolved "https://registry.yarnpkg.com/@nuxt/ui-templates/-/ui-templates-1.1.1.tgz#db3539e3c9391c217510def5242cf74739e685ea"
   integrity sha512-PjVETP7+iZXAs5Q8O4ivl4t6qjWZMZqwiTVogUXHoHGZZcw7GZW3u3tzfYfE1HbzyYJfr236IXqQ02MeR8Fz2w==
 
-"@nuxt/utils-edge@2.17.0-28074262.3ac074c":
-  version "2.17.0-28074262.3ac074c"
-  resolved "https://registry.yarnpkg.com/@nuxt/utils-edge/-/utils-edge-2.17.0-28074262.3ac074c.tgz#7dc68ccff71b1f32fecf593da0459fd3bc517d64"
-  integrity sha512-sARJO3HLvXvc5Aa5+Rd/aT76nuG1vGM+/bQjzaYbHU4r0xjUq91TwpwO1vzkJXz1TQV5ahlKSAnp4vpNIgunHQ==
+"@nuxt/utils-edge@2.17.0-28078579.df5a69a":
+  version "2.17.0-28078579.df5a69a"
+  resolved "https://registry.yarnpkg.com/@nuxt/utils-edge/-/utils-edge-2.17.0-28078579.df5a69a.tgz#976da7cf64bb07836991a75ff161891ac8210857"
+  integrity sha512-+CSpWGYqHa70vT01WwTKpBRt1bfuB4/jozyXHUeSyjHjmT5hKycnMnvENp+xpsPXjvwUS3qPSOfJFdk5b7MHfQ==
   dependencies:
     consola "^3.1.0"
     create-require "^1.1.1"
@@ -2607,10 +2710,10 @@
     ua-parser-js "^1.0.34"
     ufo "^1.1.1"
 
-"@nuxt/vue-app-edge@2.17.0-28074262.3ac074c":
-  version "2.17.0-28074262.3ac074c"
-  resolved "https://registry.yarnpkg.com/@nuxt/vue-app-edge/-/vue-app-edge-2.17.0-28074262.3ac074c.tgz#645a958a4fcc4cbe2494f1799b21b9c4d976e228"
-  integrity sha512-q1I9RDeAOAx6OkuUXXuSFnDf891TQkz8ayMSXLw+Adt1J/6bE0YfIgmOUMQvRuD7E6q3FakkP25s9abMMYJNEA==
+"@nuxt/vue-app-edge@2.17.0-28078579.df5a69a":
+  version "2.17.0-28078579.df5a69a"
+  resolved "https://registry.yarnpkg.com/@nuxt/vue-app-edge/-/vue-app-edge-2.17.0-28078579.df5a69a.tgz#8cd505310e0d6e3360d0bc457a75912869026ec4"
+  integrity sha512-+956mfzzM5xgsLL6mAIPz/qE1Y53DDbDunNlTSRvGOhRSkTTeb9noVDLsQr1u136F7/fD/cGlfhxOv/R44HTPA==
   dependencies:
     node-fetch-native "^1.1.1"
     ufo "^1.1.2"
@@ -2639,13 +2742,13 @@
     vue-template-compiler "^2.7.14"
     vuex "^3.6.2"
 
-"@nuxt/vue-renderer-edge@2.17.0-28074262.3ac074c":
-  version "2.17.0-28074262.3ac074c"
-  resolved "https://registry.yarnpkg.com/@nuxt/vue-renderer-edge/-/vue-renderer-edge-2.17.0-28074262.3ac074c.tgz#c292bf72de29d5cea325ccf73dd8d44db35b7e61"
-  integrity sha512-jj+S9p/XqmTninHlpPM+fhNb0LRPeLKwh+0tKXC6Thmb34hKi8S0dl5S1mU51xUBOk0u/M2isPyIDSateB4tKg==
+"@nuxt/vue-renderer-edge@2.17.0-28078579.df5a69a":
+  version "2.17.0-28078579.df5a69a"
+  resolved "https://registry.yarnpkg.com/@nuxt/vue-renderer-edge/-/vue-renderer-edge-2.17.0-28078579.df5a69a.tgz#dafa987a0d89e940b4d805860055e3be10facbbd"
+  integrity sha512-1XH93wWlychXwy9XOForqvvW5XdXe8txtDKN0h9yWgOSrtEK5ypqPY6p4p1cPG9CcwogKPeMYTPUf+qPWHNFrw==
   dependencies:
     "@nuxt/devalue" "^2.0.2"
-    "@nuxt/utils-edge" "2.17.0-28074262.3ac074c"
+    "@nuxt/utils-edge" "2.17.0-28078579.df5a69a"
     consola "^3.1.0"
     defu "^6.1.2"
     fs-extra "^10.1.0"
@@ -2673,15 +2776,15 @@
     vue-meta "^2.4.0"
     vue-server-renderer "^2.7.14"
 
-"@nuxt/webpack-edge@2.17.0-28074262.3ac074c":
-  version "2.17.0-28074262.3ac074c"
-  resolved "https://registry.yarnpkg.com/@nuxt/webpack-edge/-/webpack-edge-2.17.0-28074262.3ac074c.tgz#89d1b513d65130c457b01421955583d273f0e10c"
-  integrity sha512-lkGmhYpbBJ5I0kXrnEU8KKOmrAOBwnp8ENhTaXP65az1upK7OO+KgUPjGDLUicEsu6UFFY6ka23E0Y7F0YEFoQ==
+"@nuxt/webpack-edge@2.17.0-28078579.df5a69a":
+  version "2.17.0-28078579.df5a69a"
+  resolved "https://registry.yarnpkg.com/@nuxt/webpack-edge/-/webpack-edge-2.17.0-28078579.df5a69a.tgz#5908a16e11d0fb125360318366194a40dca58726"
+  integrity sha512-Yg0F3qRRRFesh+E1yWgseBxSkjP9GSB0iMMyS5vWkesRqkua0GcP27BqzVCJh5zHThOmuYYcI1fd7XcoAbPoYg==
   dependencies:
     "@babel/core" "^7.21.8"
-    "@nuxt/babel-preset-app-edge" "2.17.0-28074262.3ac074c"
+    "@nuxt/babel-preset-app-edge" "2.17.0-28078579.df5a69a"
     "@nuxt/friendly-errors-webpack-plugin" "^2.5.2"
-    "@nuxt/utils-edge" "2.17.0-28074262.3ac074c"
+    "@nuxt/utils-edge" "2.17.0-28078579.df5a69a"
     babel-loader "^8.3.0"
     cache-loader "^4.1.0"
     caniuse-lite "^1.0.30001488"
@@ -2704,7 +2807,7 @@
     postcss-import "^15.1.0"
     postcss-import-resolver "^2.0.0"
     postcss-loader "^4.3.0"
-    postcss-preset-env "^8.3.2"
+    postcss-preset-env "^8.4.1"
     postcss-url "^10.1.3"
     semver "^7.5.1"
     std-env "^3.3.3"
@@ -5040,6 +5143,11 @@ cssdb@^7.5.3:
   version "7.5.4"
   resolved "https://registry.yarnpkg.com/cssdb/-/cssdb-7.5.4.tgz#e34dafee5184d67634604e345e389ca79ac179ea"
   integrity sha512-fGD+J6Jlq+aurfE1VDXlLS4Pt0VtNlu2+YgfGOdMxRyl/HQ9bDiHTwSck1Yz8A97Dt/82izSK6Bp/4nVqacOsg==
+
+cssdb@^7.6.0:
+  version "7.6.0"
+  resolved "https://registry.yarnpkg.com/cssdb/-/cssdb-7.6.0.tgz#beac8f7a5f676db62d3c33da517ef4c9eb008f8b"
+  integrity sha512-Nna7rph8V0jC6+JBY4Vk4ndErUmfJfV6NJCaZdurL0omggabiy+QB2HCQtu5c/ACLZ0I7REv7A4QyPIoYzZx0w==
 
 cssesc@^3.0.0:
   version "3.0.0"
@@ -8616,25 +8724,25 @@ nuxi@3.5.1:
     fsevents "~2.3.2"
 
 nuxt-edge@latest:
-  version "2.17.0-28074262.3ac074c"
-  resolved "https://registry.yarnpkg.com/nuxt-edge/-/nuxt-edge-2.17.0-28074262.3ac074c.tgz#f1505a16354e313960492f2b17415aea16af6e10"
-  integrity sha512-WnAPTTsF/9w0ofd8oz0h0a55VvkDjXCgZ/At6sSDZO1q6R9pEtqumMpb4rhnZNEn+1T9sqwLIkJgu6rkM0pWFg==
+  version "2.17.0-28078579.df5a69a"
+  resolved "https://registry.yarnpkg.com/nuxt-edge/-/nuxt-edge-2.17.0-28078579.df5a69a.tgz#dac9a9754da261838caeeb7b72cf7b882e672d7e"
+  integrity sha512-Mq8Hr+pbZXcWg4HS9uET4Iv1flHvbiJgSNP9ToLP1H20STnmXGVTVhblFAjOigiv2BjyjGxM42xqbdkG1Xyhbw==
   dependencies:
-    "@nuxt/babel-preset-app-edge" "2.17.0-28074262.3ac074c"
-    "@nuxt/builder-edge" "2.17.0-28074262.3ac074c"
-    "@nuxt/cli-edge" "2.17.0-28074262.3ac074c"
+    "@nuxt/babel-preset-app-edge" "2.17.0-28078579.df5a69a"
+    "@nuxt/builder-edge" "2.17.0-28078579.df5a69a"
+    "@nuxt/cli-edge" "2.17.0-28078579.df5a69a"
     "@nuxt/components" "^2.2.1"
-    "@nuxt/config-edge" "2.17.0-28074262.3ac074c"
-    "@nuxt/core-edge" "2.17.0-28074262.3ac074c"
-    "@nuxt/generator-edge" "2.17.0-28074262.3ac074c"
+    "@nuxt/config-edge" "2.17.0-28078579.df5a69a"
+    "@nuxt/core-edge" "2.17.0-28078579.df5a69a"
+    "@nuxt/generator-edge" "2.17.0-28078579.df5a69a"
     "@nuxt/loading-screen" "^2.0.4"
     "@nuxt/opencollective" "^0.3.3"
-    "@nuxt/server-edge" "2.17.0-28074262.3ac074c"
+    "@nuxt/server-edge" "2.17.0-28078579.df5a69a"
     "@nuxt/telemetry" "^1.4.1"
-    "@nuxt/utils-edge" "2.17.0-28074262.3ac074c"
-    "@nuxt/vue-app-edge" "2.17.0-28074262.3ac074c"
-    "@nuxt/vue-renderer-edge" "2.17.0-28074262.3ac074c"
-    "@nuxt/webpack-edge" "2.17.0-28074262.3ac074c"
+    "@nuxt/utils-edge" "2.17.0-28078579.df5a69a"
+    "@nuxt/vue-app-edge" "2.17.0-28078579.df5a69a"
+    "@nuxt/vue-renderer-edge" "2.17.0-28078579.df5a69a"
+    "@nuxt/webpack-edge" "2.17.0-28078579.df5a69a"
 
 nuxt@^2.16.0:
   version "2.16.3"
@@ -9280,6 +9388,14 @@ postcss-double-position-gradients@^4.0.2:
     "@csstools/postcss-progressive-custom-properties" "^2.0.0"
     postcss-value-parser "^4.2.0"
 
+postcss-double-position-gradients@^4.0.3:
+  version "4.0.3"
+  resolved "https://registry.yarnpkg.com/postcss-double-position-gradients/-/postcss-double-position-gradients-4.0.3.tgz#9f6e0e17a5b98c3aae1174b8256fc2e2d0220dbf"
+  integrity sha512-Td1+C+kFCadnhRBMMf6D/eiQxjp33eAgwgMcLNYzZPcgXt1iU6vi/qEJ/YObp4nwn3QOtudFBMUOVHoGqmpfiA==
+  dependencies:
+    "@csstools/postcss-progressive-custom-properties" "^2.2.0"
+    postcss-value-parser "^4.2.0"
+
 postcss-focus-visible@^8.0.2:
   version "8.0.2"
   resolved "https://registry.yarnpkg.com/postcss-focus-visible/-/postcss-focus-visible-8.0.2.tgz#a7ac26ffe3e9c2bd17d7200d75e2d79ee8110891"
@@ -9351,6 +9467,16 @@ postcss-lab-function@^5.2.1:
     "@csstools/css-tokenizer" "^2.1.1"
     "@csstools/postcss-progressive-custom-properties" "^2.0.0"
 
+postcss-lab-function@^5.2.2:
+  version "5.2.2"
+  resolved "https://registry.yarnpkg.com/postcss-lab-function/-/postcss-lab-function-5.2.2.tgz#a099c24192f07b49aeea2dc6e1f86fe1cfcbcd68"
+  integrity sha512-O5LrVYzOD3anfPqvSL1HiQ8PpKAav74Gst3pXgZBHSFo6t5sws3dLGTQMnw4hgn1t064SODWAjb9KcC39N820A==
+  dependencies:
+    "@csstools/css-color-parser" "^1.2.0"
+    "@csstools/css-parser-algorithms" "^2.1.1"
+    "@csstools/css-tokenizer" "^2.1.1"
+    "@csstools/postcss-progressive-custom-properties" "^2.2.0"
+
 postcss-loader@^4.1.0, postcss-loader@^4.3.0:
   version "4.3.0"
   resolved "https://registry.yarnpkg.com/postcss-loader/-/postcss-loader-4.3.0.tgz#2c4de9657cd4f07af5ab42bd60a673004da1b8cc"
@@ -9366,6 +9492,13 @@ postcss-logical@^6.1.0:
   version "6.1.0"
   resolved "https://registry.yarnpkg.com/postcss-logical/-/postcss-logical-6.1.0.tgz#c33ae75d3edaea7eb821e76dc4e6d0ecedc3200d"
   integrity sha512-qb1+LpClhYjxac8SfOcWotnY3unKZesDqIOm+jnGt8rTl7xaIWpE2bPGZHxflOip1E/4ETo79qlJyRL3yrHn1g==
+  dependencies:
+    postcss-value-parser "^4.2.0"
+
+postcss-logical@^6.2.0:
+  version "6.2.0"
+  resolved "https://registry.yarnpkg.com/postcss-logical/-/postcss-logical-6.2.0.tgz#85e49cfee3ffda839d4befcab9f70c70a7bb337a"
+  integrity sha512-aqlfKGaY0nnbgI9jwUikp4gJKBqcH5noU/EdnIVceghaaDPYhZuyJVxlvWNy55tlTG5tunRKCTAX9yljLiFgmw==
   dependencies:
     postcss-value-parser "^4.2.0"
 
@@ -9721,6 +9854,68 @@ postcss-preset-env@^8.0.1, postcss-preset-env@^8.3.2:
     postcss-initial "^4.0.1"
     postcss-lab-function "^5.2.1"
     postcss-logical "^6.1.0"
+    postcss-nesting "^11.2.1"
+    postcss-opacity-percentage "^2.0.0"
+    postcss-overflow-shorthand "^4.0.1"
+    postcss-page-break "^3.0.4"
+    postcss-place "^8.0.1"
+    postcss-pseudo-class-any-link "^8.0.2"
+    postcss-replace-overflow-wrap "^4.0.0"
+    postcss-selector-not "^7.0.1"
+    postcss-value-parser "^4.2.0"
+
+postcss-preset-env@^8.4.1:
+  version "8.4.1"
+  resolved "https://registry.yarnpkg.com/postcss-preset-env/-/postcss-preset-env-8.4.1.tgz#ee65281c26f5f7e3d95e081efdd493460271fd09"
+  integrity sha512-IlcUT8ZSuQFWXJ/F+KvqmkzT85u33rlvd36IzM6qhdnccO7Rs3uBrHY802BFjNcPRawqSCDmPv7KKyCzNxx5Fw==
+  dependencies:
+    "@csstools/postcss-cascade-layers" "^3.0.1"
+    "@csstools/postcss-color-function" "^2.2.2"
+    "@csstools/postcss-color-mix-function" "^1.0.2"
+    "@csstools/postcss-font-format-keywords" "^2.0.2"
+    "@csstools/postcss-gradients-interpolation-method" "^3.0.5"
+    "@csstools/postcss-hwb-function" "^2.2.2"
+    "@csstools/postcss-ic-unit" "^2.0.3"
+    "@csstools/postcss-is-pseudo-class" "^3.2.1"
+    "@csstools/postcss-logical-float-and-clear" "^1.0.1"
+    "@csstools/postcss-logical-resize" "^1.0.1"
+    "@csstools/postcss-logical-viewport-units" "^1.0.3"
+    "@csstools/postcss-media-minmax" "^1.0.2"
+    "@csstools/postcss-media-queries-aspect-ratio-number-values" "^1.0.2"
+    "@csstools/postcss-nested-calc" "^2.0.2"
+    "@csstools/postcss-normalize-display-values" "^2.0.1"
+    "@csstools/postcss-oklab-function" "^2.2.2"
+    "@csstools/postcss-progressive-custom-properties" "^2.2.0"
+    "@csstools/postcss-relative-color-syntax" "^1.0.0"
+    "@csstools/postcss-scope-pseudo-class" "^2.0.2"
+    "@csstools/postcss-stepped-value-functions" "^2.1.1"
+    "@csstools/postcss-text-decoration-shorthand" "^2.2.4"
+    "@csstools/postcss-trigonometric-functions" "^2.1.1"
+    "@csstools/postcss-unset-value" "^2.0.1"
+    autoprefixer "^10.4.14"
+    browserslist "^4.21.5"
+    css-blank-pseudo "^5.0.2"
+    css-has-pseudo "^5.0.2"
+    css-prefers-color-scheme "^8.0.2"
+    cssdb "^7.6.0"
+    postcss-attribute-case-insensitive "^6.0.2"
+    postcss-clamp "^4.1.0"
+    postcss-color-functional-notation "^5.0.2"
+    postcss-color-hex-alpha "^9.0.2"
+    postcss-color-rebeccapurple "^8.0.2"
+    postcss-custom-media "^9.1.3"
+    postcss-custom-properties "^13.1.5"
+    postcss-custom-selectors "^7.1.3"
+    postcss-dir-pseudo-class "^7.0.2"
+    postcss-double-position-gradients "^4.0.3"
+    postcss-focus-visible "^8.0.2"
+    postcss-focus-within "^7.0.2"
+    postcss-font-variant "^5.0.0"
+    postcss-gap-properties "^4.0.1"
+    postcss-image-set-function "^5.0.2"
+    postcss-initial "^4.0.1"
+    postcss-lab-function "^5.2.2"
+    postcss-logical "^6.2.0"
     postcss-nesting "^11.2.1"
     postcss-opacity-percentage "^2.0.0"
     postcss-overflow-shorthand "^4.0.1"
