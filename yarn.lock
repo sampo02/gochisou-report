@@ -9643,10 +9643,10 @@ nuxi@3.4.3:
   optionalDependencies:
     fsevents "~2.3.2"
 
-nuxi@3.5.3:
-  version "3.5.3"
-  resolved "https://registry.yarnpkg.com/nuxi/-/nuxi-3.5.3.tgz#81442b473a936e6814661cc543699335c2533301"
-  integrity sha512-H0/Nj0ulUN8PrSvr6H433Awt4hNT5uaN57041QfknYVXlUce7yEbl/NcpNtnneAHYn2hMUZL9/nJCVkZ1xTvHA==
+nuxi@3.6.0:
+  version "3.6.0"
+  resolved "https://registry.yarnpkg.com/nuxi/-/nuxi-3.6.0.tgz#8b7dc197b1608abce380412d5fe0437c959d50ef"
+  integrity sha512-gLmSE8NqNIz7HRPxBmO+Y+fgz95kMM25MzEoeuWLU/ZMWYqUOcvhsQEmv4ZZBfCe5/zv7+mO3G0UK1+Gi3QUoQ==
   optionalDependencies:
     fsevents "~2.3.2"
 
