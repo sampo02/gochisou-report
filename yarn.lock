@@ -9920,10 +9920,10 @@ nuxi@3.4.3:
   optionalDependencies:
     fsevents "~2.3.2"
 
-nuxi@3.6.4:
-  version "3.6.4"
-  resolved "https://registry.yarnpkg.com/nuxi/-/nuxi-3.6.4.tgz#2d0d317b21a20526007cad92e56f06873489fba0"
-  integrity sha512-Bd8scRiNEsBJ+gVumqClZjWTuj+CAMxKFKzrmD76uzGuJBdzK+rxAhRqgB+xby9wv7ONT1mb14an4EmumwpVbg==
+nuxi@3.6.5:
+  version "3.6.5"
+  resolved "https://registry.yarnpkg.com/nuxi/-/nuxi-3.6.5.tgz#eceb93e6ad957138776fd544a961b2c05615ccca"
+  integrity sha512-4XEXYz71UiWWiKC1/cJCzqRSUEImYRmjcvKpSsBKMU58ALYVSx5KIoas5SwLO8tEKO5BS4DAe4u7MYix7hfuHQ==
   optionalDependencies:
     fsevents "~2.3.2"
 
