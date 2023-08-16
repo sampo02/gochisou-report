@@ -33,7 +33,7 @@
     "eslint": "^8.47.0",
     "eslint-plugin-vue": "^9.17.0",
     "nuxi": "3.6.5",
-    "prettier": "3.0.1"
+    "prettier": "3.0.2"
   },
   "resolutions": {
     "glob-parent": "^5.1.2"
