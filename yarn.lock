@@ -8184,6 +8184,11 @@ fsevents@~2.3.2:
   resolved "https://registry.yarnpkg.com/fsevents/-/fsevents-2.3.2.tgz#8a526f78b8fdf4623b709e0b975c52c24c02fd1a"
   integrity sha512-xiqMQR4xAeHTuB9uWm+fFRcIOgKBMiOBP+eXiyT7jsgVCq1bkVygt00oASowB7EdtpOHaaPgKt812P9ab+DDKA==
 
+fsevents@~2.3.3:
+  version "2.3.3"
+  resolved "https://registry.yarnpkg.com/fsevents/-/fsevents-2.3.3.tgz#cac6407785d03675a2a5e1a5305c697b347d90d6"
+  integrity sha512-5xoDfX+fL7faATnagmWPpbFtwh/R77WmMMqqHGS65C3vvB0YHrgF+B1YmZ3441tMj5n63k0212XNoJwzlhffQw==
+
 function-bind@^1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/function-bind/-/function-bind-1.1.1.tgz#a56899d3ea3c9bab874bb9773b7c5ede92f4895d"
@@ -10491,12 +10496,12 @@ nuxi@3.4.3:
   optionalDependencies:
     fsevents "~2.3.2"
 
-nuxi@3.6.5:
-  version "3.6.5"
-  resolved "https://registry.yarnpkg.com/nuxi/-/nuxi-3.6.5.tgz#eceb93e6ad957138776fd544a961b2c05615ccca"
-  integrity sha512-4XEXYz71UiWWiKC1/cJCzqRSUEImYRmjcvKpSsBKMU58ALYVSx5KIoas5SwLO8tEKO5BS4DAe4u7MYix7hfuHQ==
+nuxi@3.7.2:
+  version "3.7.2"
+  resolved "https://registry.yarnpkg.com/nuxi/-/nuxi-3.7.2.tgz#c140eedd9d39185e53280297c226591152076f75"
+  integrity sha512-WNczi4X5ms8v63BTlCH+ZZDPzoFI0/V5KW8an4Zv6qOngtONHALw1u6qvtcAqG2tuMDu8gdJuzxMZL2845Dbig==
   optionalDependencies:
-    fsevents "~2.3.2"
+    fsevents "~2.3.3"
 
 nuxt-edge@latest:
   version "2.17.2-28219699.b381000"
