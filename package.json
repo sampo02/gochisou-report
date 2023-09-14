@@ -27,7 +27,7 @@
     "@nuxt/types": "^2.17.1",
     "@nuxt/typescript-build": "^2.1.0",
     "@nuxtjs/web-vitals": "^0.2.6",
-    "@types/uuid": "^9.0.3",
+    "@types/uuid": "^9.0.4",
     "@typescript-eslint/eslint-plugin": "^5.62.0",
     "@typescript-eslint/parser": "^5.62.0",
     "eslint": "^8.49.0",
