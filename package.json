@@ -29,7 +29,7 @@
     "@nuxtjs/web-vitals": "^0.2.6",
     "@types/uuid": "^9.0.7",
     "@typescript-eslint/eslint-plugin": "^6.14.0",
-    "@typescript-eslint/parser": "^6.14.0",
+    "@typescript-eslint/parser": "^6.15.0",
     "eslint": "^8.56.0",
     "eslint-plugin-vue": "^9.19.2",
     "nuxi": "3.10.0",
