@@ -16,7 +16,7 @@
     "@nuxtjs/firebase": "^8.2.2",
     "@nuxtjs/pwa": "^3.0.2",
     "firebase": "^10.7.1",
-    "moment": "^2.29.4",
+    "moment": "^2.30.1",
     "nuxt": "^2.17.2",
     "nuxt-edge": "latest",
     "uuid": "^9.0.1",
