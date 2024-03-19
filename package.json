@@ -32,7 +32,7 @@
     "@typescript-eslint/parser": "^7.2.0",
     "eslint": "^8.57.0",
     "eslint-plugin-vue": "^9.23.0",
-    "nuxi": "3.10.1",
+    "nuxi": "3.11.0",
     "prettier": "3.2.5"
   },
   "resolutions": {
