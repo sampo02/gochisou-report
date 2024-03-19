@@ -10100,10 +10100,10 @@ nth-check@^2.0.1, nth-check@^2.1.1:
   dependencies:
     boolbase "^1.0.0"
 
-nuxi@3.10.1:
-  version "3.10.1"
-  resolved "https://registry.yarnpkg.com/nuxi/-/nuxi-3.10.1.tgz#22492634caf779b208f5f1c98277deafc8d4d27d"
-  integrity sha512-ZNt858+FOZDIiKKFJkXO7uJAnALytDdn1XbLgtZAqbtWNMayHbOnWcnxh+WSOE4H9uOi2+loWXEqKElmNWLgcQ==
+nuxi@3.11.0:
+  version "3.11.0"
+  resolved "https://registry.yarnpkg.com/nuxi/-/nuxi-3.11.0.tgz#51e556c4e15bf67c7de42b100824a95f574ef6df"
+  integrity sha512-0LHrUNvQ2E+izHllvoGPPfgWkKkD7bxVjUekWeO7FjKLo83N4oumZdK78Qiau/HOh6CW3Y9mcc7kkJd4IPh5uw==
   optionalDependencies:
     fsevents "~2.3.3"
 
